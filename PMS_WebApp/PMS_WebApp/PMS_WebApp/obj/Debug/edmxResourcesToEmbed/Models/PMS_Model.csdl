@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PMS_WebAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="Guid" Nullable="false" />
+    <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StaffId" Type="Guid" Nullable="false" />
+    <Property Name="NumberOfStudents" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Class__CustomerI__4D94879B" FromRole="Class" ToRole="Customer" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK__Class__StaffId__4CA06362" FromRole="Class" ToRole="Staff" />
+    <NavigationProperty Name="ExaminationSchedules" Relationship="Self.FK__Examinati__Class__59FA5E80" FromRole="Class" ToRole="ExaminationSchedule" />
+    <NavigationProperty Name="ExaminationSchedules1" Relationship="Self.FK__Examinati__HallI__5AEE82B9" FromRole="Class" ToRole="ExaminationSchedule" />
+    <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__ClassId__534D60F1" FromRole="Class" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerTypeId" Type="Guid" Nullable="false" />
+    <Property Name="MembershipTypeId" Type="Guid" Nullable="false" />
+    <Property Name="CustomerEmailId" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerContactNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Class__CustomerI__4D94879B" FromRole="Customer" ToRole="Class" />
+    <NavigationProperty Name="CustomerType" Relationship="Self.FK__Customer__Custom__300424B4" FromRole="Customer" ToRole="CustomerType" />
+    <NavigationProperty Name="MembershipType" Relationship="Self.FK__Customer__Member__30F848ED" FromRole="Customer" ToRole="MembershipType" />
+    <NavigationProperty Name="Designations" Relationship="Self.FK__Designati__Custo__46E78A0C" FromRole="Customer" ToRole="Designation" />
+    <NavigationProperty Name="ExaminationTypes" Relationship="Self.FK__Examinati__Custo__5070F446" FromRole="Customer" ToRole="ExaminationType" />
+    <NavigationProperty Name="ExaminationSchedules" Relationship="Self.FK__Examinati__Custo__5DCAEF64" FromRole="Customer" ToRole="ExaminationSchedule" />
+    <NavigationProperty Name="ModuleMappings" Relationship="Self.FK__ModuleMap__Custo__33D4B598" FromRole="Customer" ToRole="ModuleMapping" />
+    <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__CustomerI__49C3F6B7" FromRole="Customer" ToRole="Staff" />
+    <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Custome__5535A963" FromRole="Customer" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="CustomerType">
+    <Key>
+      <PropertyRef Name="CustomerTypeId" />
+    </Key>
+    <Property Name="CustomerTypeId" Type="Guid" Nullable="false" />
+    <Property Name="CustomerType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__Custom__300424B4" FromRole="CustomerType" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="DesignationId" />
+    </Key>
+    <Property Name="DesignationId" Type="Guid" Nullable="false" />
+    <Property Name="DesignationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DesignationEffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DesignationEffectiveTo" Type="DateTime" Precision="3" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Designati__Custo__46E78A0C" FromRole="Designation" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="ExaminationSchedule">
+    <Key>
+      <PropertyRef Name="ExaminationScheduleId" />
+    </Key>
+    <Property Name="ExaminationScheduleId" Type="Guid" Nullable="false" />
+    <Property Name="ExaminationTypeId" Type="Guid" Nullable="false" />
+    <Property Name="SubjectId" Type="Guid" Nullable="false" />
+    <Property Name="ClassId" Type="Guid" Nullable="false" />
+    <Property Name="HallId" Type="Guid" Nullable="false" />
+    <Property Name="InvigilatorId" Type="Guid" Nullable="false" />
+    <Property Name="HandlingStaffId" Type="Guid" Nullable="false" />
+    <Property Name="ExaminationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__Examinati__Class__59FA5E80" FromRole="ExaminationSchedule" ToRole="Class" />
+    <NavigationProperty Name="Class1" Relationship="Self.FK__Examinati__HallI__5AEE82B9" FromRole="ExaminationSchedule" ToRole="Class" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Examinati__Custo__5DCAEF64" FromRole="ExaminationSchedule" ToRole="Customer" />
+    <NavigationProperty Name="ExaminationType" Relationship="Self.FK__Examinati__Exami__5812160E" FromRole="ExaminationSchedule" ToRole="ExaminationType" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK__Examinati__Handl__5CD6CB2B" FromRole="ExaminationSchedule" ToRole="Staff" />
+    <NavigationProperty Name="Staff1" Relationship="Self.FK__Examinati__Invig__5BE2A6F2" FromRole="ExaminationSchedule" ToRole="Staff" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK__Examinati__Subje__59063A47" FromRole="ExaminationSchedule" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="ExaminationType">
+    <Key>
+      <PropertyRef Name="ExaminationTypeId" />
+    </Key>
+    <Property Name="ExaminationTypeId" Type="Guid" Nullable="false" />
+    <Property Name="ExaminationType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="duration" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="totalmarks" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Examinati__Custo__5070F446" FromRole="ExaminationType" ToRole="Customer" />
+    <NavigationProperty Name="ExaminationSchedules" Relationship="Self.FK__Examinati__Exami__5812160E" FromRole="ExaminationType" ToRole="ExaminationSchedule" />
+  </EntityType>
+  <EntityType Name="MembershipType">
+    <Key>
+      <PropertyRef Name="MembershipTypeId" />
+    </Key>
+    <Property Name="MembershipTypeId" Type="Guid" Nullable="false" />
+    <Property Name="MembershipType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MembershipLiscence" Type="Guid" />
+    <Property Name="MembershipValidFromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MembershipValidToDate" Type="DateTime" Precision="3" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__Member__30F848ED" FromRole="MembershipType" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="ModuleDetail">
+    <Key>
+      <PropertyRef Name="ModuleId" />
+    </Key>
+    <Property Name="ModuleId" Type="Guid" Nullable="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModuleDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ModuleMappings" Relationship="Self.FK__ModuleMap__Modul__34C8D9D1" FromRole="ModuleDetails" ToRole="ModuleMapping" />
+  </EntityType>
+  <EntityType Name="ModuleMapping">
+    <Key>
+      <PropertyRef Name="ModuleMappingId" />
+    </Key>
+    <Property Name="ModuleMappingId" Type="Guid" Nullable="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="ModuleId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__ModuleMap__Custo__33D4B598" FromRole="ModuleMapping" ToRole="Customer" />
+    <NavigationProperty Name="ModuleDetail" Relationship="Self.FK__ModuleMap__Modul__34C8D9D1" FromRole="ModuleMapping" ToRole="ModuleDetails" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="StaffId" Type="Guid" Nullable="false" />
+    <Property Name="StaffFisrtName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StaffMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StaffLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StaffEmployeeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DesignationId" Type="Guid" Nullable="false" />
+    <Property Name="StaffEmailId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StaffContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Class__StaffId__4CA06362" FromRole="Staff" ToRole="Class" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Staff__CustomerI__49C3F6B7" FromRole="Staff" ToRole="Customer" />
+    <NavigationProperty Name="ExaminationSchedules" Relationship="Self.FK__Examinati__Handl__5CD6CB2B" FromRole="Staff" ToRole="ExaminationSchedule" />
+    <NavigationProperty Name="ExaminationSchedules1" Relationship="Self.FK__Examinati__Invig__5BE2A6F2" FromRole="Staff" ToRole="ExaminationSchedule" />
+    <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__StaffId__5441852A" FromRole="Staff" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Guid" Nullable="false" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassId" Type="Guid" Nullable="false" />
+    <Property Name="StaffId" Type="Guid" Nullable="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__Subject__ClassId__534D60F1" FromRole="Subject" ToRole="Class" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Subject__Custome__5535A963" FromRole="Subject" ToRole="Customer" />
+    <NavigationProperty Name="ExaminationSchedules" Relationship="Self.FK__Examinati__Subje__59063A47" FromRole="Subject" ToRole="ExaminationSchedule" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK__Subject__StaffId__5441852A" FromRole="Subject" ToRole="Staff" />
+  </EntityType>
+  <Association Name="FK__Class__CustomerI__4D94879B">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Class__StaffId__4CA06362">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="StaffId" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Class__59FA5E80">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__HallI__5AEE82B9">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="HallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subject__ClassId__534D60F1">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer__Custom__300424B4">
+    <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerType">
+        <PropertyRef Name="CustomerTypeId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CustomerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer__Member__30F848ED">
+    <End Role="MembershipType" Type="Self.MembershipType" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipType">
+        <PropertyRef Name="MembershipTypeId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="MembershipTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Designati__Custo__46E78A0C">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Designation" Type="Self.Designation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Designation">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Custo__5070F446">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="ExaminationType" Type="Self.ExaminationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="ExaminationType">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Custo__5DCAEF64">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModuleMap__Custo__33D4B598">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="ModuleMapping" Type="Self.ModuleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="ModuleMapping">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Staff__CustomerI__49C3F6B7">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subject__Custome__5535A963">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Exami__5812160E">
+    <End Role="ExaminationType" Type="Self.ExaminationType" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExaminationType">
+        <PropertyRef Name="ExaminationTypeId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="ExaminationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Handl__5CD6CB2B">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="StaffId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="HandlingStaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Invig__5BE2A6F2">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="StaffId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="InvigilatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Examinati__Subje__59063A47">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="ExaminationSchedule" Type="Self.ExaminationSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="ExaminationSchedule">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModuleMap__Modul__34C8D9D1">
+    <End Role="ModuleDetails" Type="Self.ModuleDetail" Multiplicity="1" />
+    <End Role="ModuleMapping" Type="Self.ModuleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleDetails">
+        <PropertyRef Name="ModuleId" />
+      </Principal>
+      <Dependent Role="ModuleMapping">
+        <PropertyRef Name="ModuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subject__StaffId__5441852A">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="StaffId" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PMS_WebAppContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classes" EntityType="Self.Class" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="CustomerTypes" EntityType="Self.CustomerType" />
+    <EntitySet Name="Designations" EntityType="Self.Designation" />
+    <EntitySet Name="ExaminationSchedules" EntityType="Self.ExaminationSchedule" />
+    <EntitySet Name="ExaminationTypes" EntityType="Self.ExaminationType" />
+    <EntitySet Name="MembershipTypes" EntityType="Self.MembershipType" />
+    <EntitySet Name="ModuleDetails" EntityType="Self.ModuleDetail" />
+    <EntitySet Name="ModuleMappings" EntityType="Self.ModuleMapping" />
+    <EntitySet Name="Staffs" EntityType="Self.Staff" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <AssociationSet Name="FK__Class__CustomerI__4D94879B" Association="Self.FK__Class__CustomerI__4D94879B">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Class__StaffId__4CA06362" Association="Self.FK__Class__StaffId__4CA06362">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Class__59FA5E80" Association="Self.FK__Examinati__Class__59FA5E80">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__HallI__5AEE82B9" Association="Self.FK__Examinati__HallI__5AEE82B9">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subject__ClassId__534D60F1" Association="Self.FK__Subject__ClassId__534D60F1">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer__Custom__300424B4" Association="Self.FK__Customer__Custom__300424B4">
+      <End Role="CustomerType" EntitySet="CustomerTypes" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer__Member__30F848ED" Association="Self.FK__Customer__Member__30F848ED">
+      <End Role="MembershipType" EntitySet="MembershipTypes" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Designati__Custo__46E78A0C" Association="Self.FK__Designati__Custo__46E78A0C">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Designation" EntitySet="Designations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Custo__5070F446" Association="Self.FK__Examinati__Custo__5070F446">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ExaminationType" EntitySet="ExaminationTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Custo__5DCAEF64" Association="Self.FK__Examinati__Custo__5DCAEF64">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModuleMap__Custo__33D4B598" Association="Self.FK__ModuleMap__Custo__33D4B598">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ModuleMapping" EntitySet="ModuleMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Staff__CustomerI__49C3F6B7" Association="Self.FK__Staff__CustomerI__49C3F6B7">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subject__Custome__5535A963" Association="Self.FK__Subject__Custome__5535A963">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Exami__5812160E" Association="Self.FK__Examinati__Exami__5812160E">
+      <End Role="ExaminationType" EntitySet="ExaminationTypes" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Handl__5CD6CB2B" Association="Self.FK__Examinati__Handl__5CD6CB2B">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Invig__5BE2A6F2" Association="Self.FK__Examinati__Invig__5BE2A6F2">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Examinati__Subje__59063A47" Association="Self.FK__Examinati__Subje__59063A47">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="ExaminationSchedule" EntitySet="ExaminationSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModuleMap__Modul__34C8D9D1" Association="Self.FK__ModuleMap__Modul__34C8D9D1">
+      <End Role="ModuleDetails" EntitySet="ModuleDetails" />
+      <End Role="ModuleMapping" EntitySet="ModuleMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subject__StaffId__5441852A" Association="Self.FK__Subject__StaffId__5441852A">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

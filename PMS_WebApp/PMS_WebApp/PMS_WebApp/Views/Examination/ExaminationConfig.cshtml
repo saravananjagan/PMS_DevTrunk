@@ -1,0 +1,103 @@
+﻿@using PMS_WebApp.Constants;
+@{
+	ViewBag.Title = "ExaminationConfig";
+}
+
+<h2>Examination Type Configuration</h2>
+<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+<form class="form-horizontal" id="ExaminationTypeForm" onSubmit="return false;">
+	<div class="form-group">
+		<label for="inputExaminationType" class="col-lg-2 control-label">Examination Type</label>
+		<div class="col-lg-10">
+			<input type="text" class="form-control" id="inputExaminationType" placeholder="Examination Type">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="time" class="col-lg-2 control-label">Duration</label>
+		<div class="col-lg-10">
+			<input type="text" class="form-control" id="time" placeholder="Duration">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputTotalMarks" class="col-lg-2 control-label">Total Marks</label>
+		<div class="col-lg-10">
+			<input type="number" class="form-control" id="inputTotalMarks" placeholder="Total Marks">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="offset-lg-2 col-lg-10">
+			<button class="btn btn-default" onclick="AddExaminationType()">Submit</button>
+		</div>
+	</div>
+</form>
+<br />
+<h2>Examination Types</h2>
+<table class="table table-striped" id="ExaminationTypeTable">
+	<thead><tr><th>Examination Type</th><th>Duration (HH : MM)</th><th>Total Marks</th></tr></thead>
+	<tbody id="ExaminationTypeDataTable"></tbody>
+</table>
+<script>
+	$(document).ready(function () {
+		var timepicker = new TimePicker('time', {
+			lang: 'en',
+			theme: 'dark'
+		});
+		timepicker.on('change', function (evt) {
+
+			var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+			evt.element.value = value;
+
+		});
+		$.ajax({
+			url: 'http://localhost:49692/odata/ExaminationTypes',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				FillExaminationType(data);
+			},
+			error: function () {
+				console.log("Error please try again");
+			}
+		});
+		
+	});
+	function FillExaminationType(data) {
+		$.each(data.value, function () {
+			console.log(this);
+			var tr = $("<tr>");
+			var td_ExamTypeName = $("<td>").html(this.ExaminationType1.toString());
+			var formattedExamDuration = this.duration.replace("PT", "").replace("H", ":").replace("M", ":").replace("S", "");
+			var td_ExamTypeDuration = $("<td>").html(formattedExamDuration.toString() + " 00");
+			var td_TotalMarks = $("<td>").html(this.totalmarks.toString());
+			tr.html(td_ExamTypeName).append(td_ExamTypeDuration).append(td_TotalMarks);
+			$("#ExaminationTypeDataTable").append(tr);
+		});
+		$("#ExaminationTypeTable").DataTable();
+	}
+	function AddExaminationType() {
+		var data = {
+			ExaminationType1: $("#inputExaminationType").val().trim(),
+			duration: $("#time").val(),
+			totalmarks: $("#inputTotalMarks").val(),
+			Status: true
+		}
+		$.ajax({
+			url: 'http://localhost:49692/odata/ExaminationTypes',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function (d) {
+				alert("Saved Successfully");
+				document.getElementById("ExaminationTypeForm").reset();
+			},
+			error: function () {
+				alert("Error please try again");
+			}
+		});
+	}
+</script>
