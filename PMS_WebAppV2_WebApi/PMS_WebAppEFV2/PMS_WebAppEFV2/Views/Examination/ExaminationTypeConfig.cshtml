@@ -1,0 +1,146 @@
+﻿@{
+	ViewBag.Title = "ExaminationTypeConfig";
+}
+
+<h2>Examination Type Configuration</h2>
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+
+<form class="form-horizontal" id="ExaminationTypeForm" onSubmit="return false;">
+	<div class="form-group">
+		<label for="inputExaminationType" class="col-lg-2 control-label">Examination Type</label>
+		<div class="col-lg-10">
+			<input type="text" class="form-control" id="inputExaminationType" placeholder="Examination Type">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="time" class="col-lg-2 control-label">Duration</label>
+		<div class="col-lg-10">
+			<input type="text" class="form-control timeEntry" id="inputExaminationDuration" placeholder="Examination Duration (HH:MM)">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputTotalMarks" class="col-lg-2 control-label">Total Marks</label>
+		<div class="col-lg-10">
+			<input type="number" class="form-control" id="inputTotalMarks" placeholder="Total Marks">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="offset-lg-2 col-lg-10">
+			<button class="btn btn-default" onclick="AddExaminationType()">Submit</button>
+		</div>
+	</div>
+</form>
+<br />
+<h2>Examination Types</h2>
+<table class="table table-striped" id="ExaminationTypeTable">
+	<thead><tr><th>Examination Type</th><th>Duration (HH : MM)</th><th>Total Marks</th><th>Selection</th></tr></thead>
+	<tbody id="ExaminationTypeDataTable"></tbody>
+</table>
+<form class="form-inline">
+	<button class="btn btn-danger">Delete Selected</button>
+</form>
+<script>
+	/* Create an array with the values of all the input boxes in a column */
+	$.fn.dataTable.ext.order['dom-text'] = function (settings, col) {
+		return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+			return $('input', td).val();
+		});
+	}
+
+	/* Create an array with the values of all the input boxes in a column, parsed as numbers */
+	$.fn.dataTable.ext.order['dom-text-numeric'] = function (settings, col) {
+		return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+			return $('input', td).val() * 1;
+		});
+	}
+
+	/* Create an array with the values of all the select options in a column */
+	$.fn.dataTable.ext.order['dom-select'] = function (settings, col) {
+		return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+			return $('select', td).val();
+		});
+	}
+
+	/* Create an array with the values of all the checkboxes in a column */
+	$.fn.dataTable.ext.order['dom-checkbox'] = function (settings, col) {
+		return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+			return $('input', td).prop('checked') ? '1' : '0';
+		});
+	}
+	$(document).ready(function () {
+		showLoader();
+		$.ajax({
+			url: 'http://localhost:57460/api/GetExaminationTypes',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				FillExaminationType(data);
+			},
+			error: function () {
+				console.log("Error Please Try Again After Sometime, Propably Connection/Network Issue. \n For Immediate assistance Contact Support.");
+			}
+		});
+
+	});
+	function FillExaminationType(data) {
+		$.each(data, function () {
+			var tr = $("<tr>", { "id": this.ExaminationTypeId.toString() });
+			var td_ExamTypeName = $("<td>").html(this.ExaminationType1.toString());
+			var formattedExamDuration = this.duration.replace("PT", "").replace("H", ":").replace("M", "").replace("S", "");
+			var formattedExamDurationHours = (formattedExamDuration.split(":")[0] != '') ? formattedExamDuration.split(":")[0] : "00";
+			var formattedExamDurationMinutes = (formattedExamDuration.split(":")[1] != '') ? formattedExamDuration.split(":")[1] : "00";
+			var td_ExamTypeDuration = $("<td>").html(formattedExamDurationHours + ':' + formattedExamDurationMinutes);
+			var td_TotalMarks = $("<td>").html(this.totalmarks.toString());
+			var input_selection = $("<input>", { "type": "checkbox", "id": this.ExaminationTypeId.toString(), "class": "checkbox" });
+			var row_delete = $("<a href=\"#\" onclick=\"delete_row('" + this.ExaminationTypeId.toString() + "')\">").html($("<i class=\"fa fa-trash-o\" aria-hidden=\"true\" />"))
+			var td_Selection = $("<td>").html(input_selection).append(row_delete);
+			tr.html(td_ExamTypeName).append(td_ExamTypeDuration).append(td_TotalMarks).append(td_Selection);
+			$("#ExaminationTypeDataTable").append(tr);
+		});
+		$("#ExaminationTypeTable").DataTable();
+		$('.timeEntry').timeEntry({ show24Hours: true });
+		$('.timeEntry-control').hide();
+		endLoader();
+	}
+	function delete_row(id) {
+		//api/GetExaminationTypeById
+		$.ajax({
+			url: "http://localhost:57460/api/DeleteExaminationType?Id="+id,
+			type: 'DELETE',
+			success: function (d) {
+				alert("Deleted Successfully");
+				location.reload();
+			},
+			error: function (e) {
+				alert("Error Please Try Again After Sometime, Propably Connection/Network Issue. \n For Immediate assistance Contact Support.");
+				console.log(e);
+			}
+		});
+	}
+	function AddExaminationType() {
+		var data = {
+			ExaminationType1: $("#inputExaminationType").val().trim(),
+			duration: $("#inputExaminationDuration").val(),
+			totalmarks: $("#inputTotalMarks").val(),
+			Status: true
+		}
+		$.ajax({
+			url: 'http://localhost:57460/api/PostExaminationType',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function (d) {
+				alert("Saved Successfully");
+				document.getElementById("ExaminationTypeForm").reset();
+				location.reload();
+			},
+			error: function (e) {
+				alert("Error Please Try Again After Sometime, Propably Connection/Network Issue. \n For Immediate assistance Contact Support.");
+				console.log(e);
+			}
+		});
+	}
+</script>

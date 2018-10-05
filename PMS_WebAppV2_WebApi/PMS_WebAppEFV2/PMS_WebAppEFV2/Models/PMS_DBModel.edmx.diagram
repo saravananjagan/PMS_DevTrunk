@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b5e78ee1d31b4177ad97581c45663f49" Name="Diagram1">
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.Class" Width="1.5" PointX="7.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.Customer" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.CustomerType" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.Designation" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.ExaminationSchedule" Width="1.5" PointX="9.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.ExaminationType" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.MembershipType" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.ModuleDetail" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.ModuleMapping" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.Staff" Width="1.5" PointX="5.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.Subject" Width="1.5" PointX="12.75" PointY="20" IsExpanded="true" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Class__CustomerI__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Class__StaffId__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Class__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__HallI__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Subject__ClassId__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Customer__Custom__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Customer__Member__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Designati__Custo__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Custo__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Custo__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__ModuleMap__Custo__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Staff__CustomerI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Subject__Custome__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Exami__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Handl__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Invig__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Subje__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__ModuleMap__Modul__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__Subject__StaffId__5441852A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
