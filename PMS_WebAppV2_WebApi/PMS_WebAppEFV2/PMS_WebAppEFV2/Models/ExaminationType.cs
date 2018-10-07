@@ -36,4 +36,10 @@ namespace PMS_WebAppEFV2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExaminationSchedule> ExaminationSchedules { get; set; }
     }
+
+    public class ExaminationTypeParameters
+    {
+        public string [] ExaminationTypeIds { get; set; }
+        //public ExaminationType ExaminationTypeObject { get; set; } = null;
+    }
 }

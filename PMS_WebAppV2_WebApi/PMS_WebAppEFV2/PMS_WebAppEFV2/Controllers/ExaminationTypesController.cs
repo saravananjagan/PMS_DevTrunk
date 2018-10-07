@@ -121,6 +121,22 @@ namespace PMS_WebAppEFV2.Controllers
             return Ok(examinationType);
         }
 
+        // POST: api/ExaminationTypes/5
+        [ResponseType(typeof(List<ExaminationType>))]
+        [Route("api/DeleteMultipleExaminationTypes")]
+        public IHttpActionResult PostDeleteMultipleExaminationTypes(ExaminationTypeParameters examinationTypeIds)
+        {
+            List<ExaminationType> examinationTypes=db.ExaminationTypes.Where(w => examinationTypeIds.ExaminationTypeIds.Contains(w.ExaminationTypeId.ToString())).ToList();
+            if (examinationTypes == null)
+            {
+                return NotFound();
+            }
+            db.ExaminationTypes.RemoveRange(examinationTypes);
+            db.SaveChanges();
+
+            return Ok(examinationTypes);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

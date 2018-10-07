@@ -40,7 +40,7 @@
 	<tbody id="ExaminationTypeDataTable"></tbody>
 </table>
 <form class="form-inline">
-	<button class="btn btn-danger">Delete Selected</button>
+	<button class="btn btn-danger" type="button" onclick="MultipleDelete('select-checkbox')">Delete Selected</button>
 </form>
 <script>
 	/* Create an array with the values of all the input boxes in a column */
@@ -94,7 +94,7 @@
 			var formattedExamDurationMinutes = (formattedExamDuration.split(":")[1] != '') ? formattedExamDuration.split(":")[1] : "00";
 			var td_ExamTypeDuration = $("<td>").html(formattedExamDurationHours + ':' + formattedExamDurationMinutes);
 			var td_TotalMarks = $("<td>").html(this.totalmarks.toString());
-			var input_selection = $("<input>", { "type": "checkbox", "id": this.ExaminationTypeId.toString(), "class": "checkbox" });
+			var input_selection = $("<input>", { "type": "checkbox", "id": this.ExaminationTypeId.toString(), "class": "checkbox select-checkbox" });
 			var row_delete = $("<a href=\"#\" onclick=\"delete_row('" + this.ExaminationTypeId.toString() + "')\">").html($("<i class=\"fa fa-trash-o\" aria-hidden=\"true\" />"))
 			var td_Selection = $("<td>").html(input_selection).append(row_delete);
 			tr.html(td_ExamTypeName).append(td_ExamTypeDuration).append(td_TotalMarks).append(td_Selection);
@@ -142,5 +142,36 @@
 				console.log(e);
 			}
 		});
+	}
+	function MultipleDelete(selectionClass) {
+		var examinationTypeIds = new Array();
+		if ($(".select-checkbox:checked").length > 0) {
+			$.each($(".select-checkbox:checked"), function () {
+				examinationTypeIds.push(this.id.toString());
+			});
+			var data = {
+				ExaminationTypeIds: examinationTypeIds
+			}
+			//api/DeleteMultipleExaminationTypes
+			$.ajax({
+				url: "http://localhost:57460/api/DeleteMultipleExaminationTypes",
+				type: 'POST',
+				//contentType: 'application/json',
+				dataType: 'json',
+				data: data,
+				success: function (d) {
+					alert("Deleted Successfully");
+					location.reload();
+				},
+				error: function (e) {
+					alert("Error Please Try Again After Sometime, Propably Connection/Network Issue. \n For Immediate assistance Contact Support.");
+					console.log(e);
+				}
+			});
+		}
+		else {
+			alert('Please select any row and then proceed deleting them  !!.');
+		}
+		
 	}
 </script>
