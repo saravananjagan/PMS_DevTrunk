@@ -1,0 +1,11 @@
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.deps.json
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.runtimeconfig.json
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.runtimeconfig.dev.json
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.dll
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.csprojAssemblyReference.cache
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.csproj.CoreCompileInputs.cache
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfoInputs.cache
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfo.cs
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.pdb
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.dll
+c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.pdb
