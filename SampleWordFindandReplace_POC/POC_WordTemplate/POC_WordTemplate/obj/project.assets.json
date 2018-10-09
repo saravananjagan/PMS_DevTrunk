@@ -724,23 +724,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\saravanan.chinna\\.nuget\\packages\\": {},
+    "C:\\Users\\Saravanan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Pms_v1\\PMS_DevTrunk\\SampleWordFindandReplace_POC\\POC_WordTemplate\\POC_WordTemplate\\POC_WordTemplate.csproj",
+      "projectUniqueName": "D:\\PmsDevTrunk\\PMS_DevTrunk\\SampleWordFindandReplace_POC\\POC_WordTemplate\\POC_WordTemplate\\POC_WordTemplate.csproj",
       "projectName": "POC_WordTemplate",
-      "projectPath": "D:\\Pms_v1\\PMS_DevTrunk\\SampleWordFindandReplace_POC\\POC_WordTemplate\\POC_WordTemplate\\POC_WordTemplate.csproj",
-      "packagesPath": "C:\\Users\\saravanan.chinna\\.nuget\\packages\\",
-      "outputPath": "D:\\Pms_v1\\PMS_DevTrunk\\SampleWordFindandReplace_POC\\POC_WordTemplate\\POC_WordTemplate\\obj\\",
+      "projectPath": "D:\\PmsDevTrunk\\PMS_DevTrunk\\SampleWordFindandReplace_POC\\POC_WordTemplate\\POC_WordTemplate\\POC_WordTemplate.csproj",
+      "packagesPath": "C:\\Users\\Saravanan\\.nuget\\packages\\",
+      "outputPath": "D:\\PmsDevTrunk\\PMS_DevTrunk\\SampleWordFindandReplace_POC\\POC_WordTemplate\\POC_WordTemplate\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\saravanan.chinna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Saravanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

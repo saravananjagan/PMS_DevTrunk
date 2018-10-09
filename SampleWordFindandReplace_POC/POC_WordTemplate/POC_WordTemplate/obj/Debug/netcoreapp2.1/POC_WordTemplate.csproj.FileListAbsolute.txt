@@ -20,3 +20,14 @@ D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTem
 D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfo.cs
 D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.dll
 D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.pdb
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.deps.json
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.runtimeconfig.json
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.runtimeconfig.dev.json
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.dll
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.pdb
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.csprojAssemblyReference.cache
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.csproj.CoreCompileInputs.cache
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfoInputs.cache
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfo.cs
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.dll
+D:\PmsDevTrunk\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.pdb
