@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf.draw;
+using System;
 
 namespace POC_WordTemplate
 {
@@ -12,6 +14,9 @@ namespace POC_WordTemplate
             aDoc = wordApp.Documents.Open("C:\\Users\\saravanan.chinna\\Documents\\SampleTemplate.docx");
             wordApp.Visible = false;
             FindAndReplace(wordApp, "<name>", "Test Name");
+            wordApp.ActiveDocument.Characters.Last.Select();
+            wordApp.Selection.Collapse();
+            wordApp.Selection.TypeText("appended text........");
             aDoc.Save();
             aDoc.Close();
             Console.WriteLine("Hello World!");

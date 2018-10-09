@@ -9,3 +9,14 @@ c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Deb
 c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.pdb
 c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.dll
 c:\users\saravanan.chinna\source\repos\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.pdb
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.deps.json
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.runtimeconfig.json
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.runtimeconfig.dev.json
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.dll
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\bin\Debug\netcoreapp2.1\POC_WordTemplate.pdb
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.csprojAssemblyReference.cache
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.csproj.CoreCompileInputs.cache
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfoInputs.cache
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.AssemblyInfo.cs
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.dll
+D:\Pms_v1\PMS_DevTrunk\SampleWordFindandReplace_POC\POC_WordTemplate\POC_WordTemplate\obj\Debug\netcoreapp2.1\POC_WordTemplate.pdb
