@@ -187,6 +187,7 @@
     <Compile Include="Controllers\ExaminationController.cs" />
     <Compile Include="Controllers\ExaminationTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionPaperController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
