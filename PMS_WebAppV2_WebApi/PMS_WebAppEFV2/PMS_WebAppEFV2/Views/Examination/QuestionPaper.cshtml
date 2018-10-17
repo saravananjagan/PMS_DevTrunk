@@ -1,70 +1,68 @@
 ﻿
-@{
-    ViewBag.Title = "QuestionPaper";
-}
-
+<div class="container-fluid">
+	<div class="dropdown">
+		<h4>
+			Examination Type : <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+				--Please Select--
+			</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="#">Normal</a>
+				<a class="dropdown-item active" href="#">Active</a>
+				<a class="dropdown-item disabled" href="#">Disabled</a>
+			</div>
+			<button type="button" class="btn btn-success" style="float:right">
+				Add part
+			</button>
+		</h4>
+	</div>
+</div>
 <div class="container-fluid">
 	<input type="text" class="form-control form-control-lg text-center" placeholder="Subject Title"><br>
 	<div class="row">
-		<div class="col-8">
-			<strong>Choose Part Type:</strong>&emsp;
-			<label class="radio-inline"><input type="radio" name="optradio">MCQ</label>&emsp;
-			<label class="radio-inline"><input type="radio" name="optradio">Objective without choice</label>&emsp;
-			<label class="radio-inline"><input type="radio" name="optradio">Subjective</label> &emsp;
+		<div class="col-6">
+			<input class="form-control left-aligned-small-input text-center" type="text" placeholder="HH:MM" disabled>
 		</div>
-		<div class="col-4">
-			<button type="button" class="btn btn-outline-primary add-questions">Add Part</button>
+		<div class="col-6">
+			<input class="form-control right-aligned-small-input text-center" type="text" placeholder="Marks" disabled>
 		</div>
-	</div><br>
+	</div>
+</div><br />
+<div class="container-fluid" id="PartsContainer">
 
+</div>
+<div class="container-fluid" id="PartTemplate" style="display:none;">
 	<div class="card border-primary">
 		<div class="card-body">
-			<div class="row">
-				<div class="col-8">
-					<input type="text" class="form-control form-control-lg" placeholder="Part Name">
-				</div>
-				<div class="col-4">
-					<button type="button" class="btn btn-outline-danger add-questions">Remove Part</button>
-				</div>
+			<div class="dropdown">
+				<h5>
+					Question Type : <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+						--Please Select--
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Normal</a>
+						<a class="dropdown-item active" href="#">Active</a>
+						<a class="dropdown-item disabled" href="#">Disabled</a>
+					</div>
+				</h5>
 			</div>
+			<h3 class="card-title">
+				Part Name:
+				<input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName">
+				<button class="btn btn-primary" style="display:inline-block;float:right;">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
+				<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="M"><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
+				<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
+				<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="Q">
+			</h3>
 			<br>
-			<div class="row">
-				<div class="col-1">
-					<button type="button" class="btn btn-outline-success question-remove"><i class="fa fa-plus"></i></button>
-				</div>
-				<div class="col-10">
-					<input type="text" class="form-control" placeholder="MCQ Question No 1">
-				</div>
-				<div class="col-1">
-					<button type="button" class="btn btn-outline-danger question-remove"><i class="fa fa-remove"></i></button>
-				</div>
-			</div><br>
-			<div class="row">
-				<div class="col-1">
-					<button type="button" class="btn btn-outline-success question-remove"><i class="fa fa-plus"></i></button>
-				</div>
-				<div class="col-2">
-					<input type="text" class="form-control" placeholder="Choice 1">
-				</div>
-				<div class="col-1">
-					<button type="button" class="btn btn-outline-success question-remove"><i class="fa fa-plus"></i></button>
-				</div>
-				<div class="col-2">
-					<input type="text" class="form-control" placeholder="Choice 2">
-				</div>
-				<div class="col-1">
-					<button type="button" class="btn btn-outline-success question-remove"><i class="fa fa-plus"></i></button>
-				</div>
-				<div class="col-2">
-					<input type="text" class="form-control" placeholder="Choice 3">
-				</div>
-				<div class="col-1">
-					<button type="button" class="btn btn-outline-danger question-remove"><i class="fa fa-remove"></i></button>
-				</div>
+			<div class="card-footer custom-footer">
+				<button class="btn btn-primary right-position round-btn"><i class="fa fa-plus"></i></button>
 			</div>
-			<br>
-			<button type="button" class="btn btn-outline-success add-questions">Submit</button>
 		</div>
 	</div>
 </div>
+<div id="QuestionTemplate" class="container-fluid" style="display:none;">
 
+</div>
+<div id="OptionTemplate" class="container-fluid" style="display:none;">
+
+</div>
