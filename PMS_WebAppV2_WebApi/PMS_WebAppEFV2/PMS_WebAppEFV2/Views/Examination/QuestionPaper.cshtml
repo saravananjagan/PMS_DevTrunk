@@ -1,13 +1,10 @@
 ﻿<div class="container-fluid">
 	<div class="dropdown">
 		<h4>
-			Examination Type : <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+			Examination Type : <button type="button" class="btn btn-outline-primary dropdown-toggle ExaminationTypeSelectedText" data-toggle="dropdown">
 				--Please Select--
 			</button>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">Normal</a>
-				<a class="dropdown-item active" href="#">Active</a>
-				<a class="dropdown-item disabled" href="#">Disabled</a>
+			<div class="dropdown-menu" id="ExaminationTypeDropDown">
 			</div>
 			<button type="button" class="btn btn-success" style="float:right">
 				Add part
@@ -19,10 +16,10 @@
 	<input type="text" class="form-control form-control-lg text-center" placeholder="Subject Title"><br>
 	<div class="row">
 		<div class="col-6">
-			<input class="form-control left-aligned-small-input text-center" type="text" placeholder="HH:MM" disabled>
+			<input class="form-control left-aligned-small-input text-center" id="ExaminationDuration" type="text" placeholder="HH:MM" disabled>
 		</div>
 		<div class="col-6">
-			<input class="form-control right-aligned-small-input text-center" type="text" placeholder="Marks" disabled>
+			<input class="form-control right-aligned-small-input text-center" id="ExaminationTotalMarks" type="text" placeholder="Marks" disabled>
 		</div>
 	</div>
 </div><br />
@@ -72,3 +69,4 @@
 		<button class="btn btn-success">Add Choice</button>
 	</div>
 </div>
+<script src="~/Scripts/QuestionPaperScripts.js"></script>

@@ -11,7 +11,7 @@ namespace PMS_WebAppEFV2.Controllers
     public class QuestionPaperController : ApiController
     {
         [HttpPost]
-        public HttpResponseMessage GetQuestionPaperFormData(JObject FormInputs)
+        public HttpResponseMessage SubmitQuestionPaperFormData(JObject FormInputs)
         {
 
             return Request.CreateResponse(HttpStatusCode.OK);

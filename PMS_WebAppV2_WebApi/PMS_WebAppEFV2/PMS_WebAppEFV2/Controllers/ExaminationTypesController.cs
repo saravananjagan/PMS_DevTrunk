@@ -16,6 +16,7 @@ namespace PMS_WebAppEFV2.Controllers
     {
         private PMSEntities db = new PMSEntities();
 
+        //pass user identity userid and customer id property value to all methods in future after implementing the authentication
         // GET: api/ExaminationTypes
         [Route("api/GetExaminationTypes")]
         public IQueryable<ExaminationType> GetExaminationTypes()
