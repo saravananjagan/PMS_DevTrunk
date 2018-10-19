@@ -1,0 +1,61 @@
+table analysis
+class table
+1. class id
+2. class name
+3. section
+4. staff id
+5. number of students
+6. customer id
+7. audit columns
+
+examination types table
+1. examination type id
+2. examination type
+3. duration
+4. total marks
+5. customer id
+6. audit columns
+
+designation
+1. designation id
+2. designation name
+3. designation effective from
+4. designation effective to
+5. customer id
+6. audit columns
+
+staff
+1. staff id
+2. staff fisrt name
+3. staff middle name
+4. staff last name
+5. staff number
+6. designation id
+7. staff email id
+8. staff contact number
+9. customer id
+10.audit columns
+
+
+subject table
+1. subject id
+2. subject name
+3. class id
+4. staff id
+5. customer id
+6. audit columns
+
+examination schedule
+1. examination schedule id
+2. examination type id
+3. subject id
+4. class id
+5. hall id - FK class id
+6. invigilator id - FK Staff id
+7. handling staff id - FK Staff id
+8. examination date
+9. start time
+10.end time
+11.customer id
+12.audit columns
+
