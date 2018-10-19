@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="saravananjagan_PMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="saravananjagan_PMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Class">
           <Key>
             <PropertyRef Name="ClassId" />
@@ -136,6 +136,19 @@
           <Property Name="ModuleMappingId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ModuleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="AddedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QuestionTypeId" />
+          </Key>
+          <Property Name="QuestionTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionType" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AddedOn" Type="datetime" Nullable="false" />
           <Property Name="AddedBy" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UpdatedOn" Type="datetime" />
@@ -356,6 +369,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__QuestionT__Custo__6477ECF3">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="QuestionType">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Staff__CustomerI__49C3F6B7">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -414,6 +439,7 @@
           <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="ModuleDetails" EntityType="Self.ModuleDetails" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="ModuleMapping" EntityType="Self.ModuleMapping" Schema="Pms" store:Type="Tables" />
+          <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="Pms" store:Type="Tables" />
           <AssociationSet Name="FK__Class__CustomerI__4D94879B" Association="Self.FK__Class__CustomerI__4D94879B">
@@ -476,6 +502,10 @@
             <End Role="ModuleDetails" EntitySet="ModuleDetails" />
             <End Role="ModuleMapping" EntitySet="ModuleMapping" />
           </AssociationSet>
+          <AssociationSet Name="FK__QuestionT__Custo__6477ECF3" Association="Self.FK__QuestionT__Custo__6477ECF3">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="QuestionType" EntitySet="QuestionType" />
+          </AssociationSet>
           <AssociationSet Name="FK__Staff__CustomerI__49C3F6B7" Association="Self.FK__Staff__CustomerI__49C3F6B7">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Staff" EntitySet="Staff" />
@@ -493,8 +523,7 @@
             <End Role="Subject" EntitySet="Subject" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="saravananjagan_PMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -544,6 +573,7 @@
           <NavigationProperty Name="ModuleMappings" Relationship="Self.FK__ModuleMap__Custo__33D4B598" FromRole="Customer" ToRole="ModuleMapping" />
           <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__CustomerI__49C3F6B7" FromRole="Customer" ToRole="Staff" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Custome__5535A963" FromRole="Customer" ToRole="Subject" />
+          <NavigationProperty Name="QuestionTypes" Relationship="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3" FromRole="Customer" ToRole="QuestionType" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -1023,7 +1053,38 @@
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Subject" EntitySet="Subjects" />
           </AssociationSet>
+          <EntitySet Name="QuestionTypes" EntityType="saravananjagan_PMSModel.QuestionType" />
+          <AssociationSet Name="FK__QuestionT__Custo__6477ECF3" Association="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QuestionTypeId" />
+          </Key>
+          <Property Name="QuestionTypeId" Type="Guid" Nullable="false" />
+          <Property Name="QuestionType1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddedBy" Type="Guid" Nullable="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3" FromRole="QuestionType" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK__QuestionT__Custo__6477ECF3">
+          <End Type="saravananjagan_PMSModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="saravananjagan_PMSModel.QuestionType" Role="QuestionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="QuestionType">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1209,6 +1270,20 @@
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="saravananjagan_PMSModel.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionType">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="QuestionType1" ColumnName="QuestionType" />
+                <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

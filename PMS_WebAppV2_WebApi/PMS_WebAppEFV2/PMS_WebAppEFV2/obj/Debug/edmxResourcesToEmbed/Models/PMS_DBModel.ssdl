@@ -137,6 +137,19 @@
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
     <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="QuestionType">
+    <Key>
+      <PropertyRef Name="QuestionTypeId" />
+    </Key>
+    <Property Name="QuestionTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="QuestionType" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="uniqueidentifier" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Staff">
     <Key>
       <PropertyRef Name="StaffId" />
@@ -351,6 +364,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__QuestionT__Custo__6477ECF3">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="QuestionType">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Staff__CustomerI__49C3F6B7">
     <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -409,6 +434,7 @@
     <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="ModuleDetails" EntityType="Self.ModuleDetails" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="ModuleMapping" EntityType="Self.ModuleMapping" Schema="Pms" store:Type="Tables" />
+    <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="Pms" store:Type="Tables" />
     <AssociationSet Name="FK__Class__CustomerI__4D94879B" Association="Self.FK__Class__CustomerI__4D94879B">
@@ -470,6 +496,10 @@
     <AssociationSet Name="FK__ModuleMap__Modul__34C8D9D1" Association="Self.FK__ModuleMap__Modul__34C8D9D1">
       <End Role="ModuleDetails" EntitySet="ModuleDetails" />
       <End Role="ModuleMapping" EntitySet="ModuleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QuestionT__Custo__6477ECF3" Association="Self.FK__QuestionT__Custo__6477ECF3">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="QuestionType" EntitySet="QuestionType" />
     </AssociationSet>
     <AssociationSet Name="FK__Staff__CustomerI__49C3F6B7" Association="Self.FK__Staff__CustomerI__49C3F6B7">
       <End Role="Customer" EntitySet="Customer" />

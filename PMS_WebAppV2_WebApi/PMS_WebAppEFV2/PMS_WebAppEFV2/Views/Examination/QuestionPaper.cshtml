@@ -6,7 +6,7 @@
 			</button>
 			<div class="dropdown-menu" id="ExaminationTypeDropDown">
 			</div>
-			<button type="button" class="btn btn-success" style="float:right">
+			<button type="button" class="btn btn-success" style="float:right" onclick="AddPart()">
 				Add part
 			</button>
 		</h4>
@@ -26,32 +26,31 @@
 <div class="container-fluid" id="PartsContainer">
 
 </div>
-<div class="container-fluid" id="PartTemplate" style="display:none;">
-	<div class="card border-primary">
-		<div class="card-body">
-			<div class="dropdown">
-				<h5>
-					Question Type : <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
-						--Please Select--
-					</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Normal</a>
-						<a class="dropdown-item active" href="#">Active</a>
-						<a class="dropdown-item disabled" href="#">Disabled</a>
-					</div>
-				</h5>
-			</div>
-			<h3 class="card-title">
-				Part Name:
-				<input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName">
-				<button class="btn btn-primary" style="display:inline-block;float:right;">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
-				<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="M"><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
-				<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
-				<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="Q">
-			</h3>
-			<br>
-			<div class="card-footer custom-footer">
-				<button class="btn btn-primary right-position round-btn"><i class="fa fa-plus"></i></button>
+<div class="container-fluid" style="display:none;">
+	<div class="PartTemplate">
+		<div class="card border-primary PartTemplate_Initial">
+			<div class="card-body">
+				<div class="dropdown">
+					<h5>
+						Question Type : <button type="button" class="btn btn-outline-primary dropdown-toggle QuestionTypeSelectedText" data-toggle="dropdown">
+							--Please Select--
+						</button>
+						<div class="dropdown-menu" id="QuestionTypeDropdown">
+						</div>
+					</h5>
+				</div>
+				<h3 class="card-title">
+					Part Name:
+					<input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName">
+					<button class="btn btn-primary" style="display:inline-block;float:right;">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
+					<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="M"><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
+					<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
+					<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="Q">
+				</h3>
+				<br>
+				<div class="card-footer custom-footer">
+					<button class="btn btn-primary right-position round-btn"><i class="fa fa-plus"></i></button>
+				</div>
 			</div>
 		</div>
 	</div>

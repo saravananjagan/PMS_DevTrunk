@@ -10,7 +10,6 @@
 namespace PMS_WebAppEFV2.Models
 {
     using System;
-    using System.Configuration;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -19,7 +18,6 @@ namespace PMS_WebAppEFV2.Models
         public PMSEntities()
             : base("name=PMSEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -38,5 +36,6 @@ namespace PMS_WebAppEFV2.Models
         public virtual DbSet<ModuleMapping> ModuleMappings { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<QuestionType> QuestionTypes { get; set; }
     }
 }

@@ -59,3 +59,9 @@ examination schedule
 11.customer id
 12.audit columns
 
+question types
+1. question type id
+2. question type
+3. customer id
+4. audit columns
+

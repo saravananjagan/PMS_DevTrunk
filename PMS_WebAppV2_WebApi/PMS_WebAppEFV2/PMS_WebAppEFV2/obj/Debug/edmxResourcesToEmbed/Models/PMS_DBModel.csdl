@@ -46,6 +46,7 @@
     <NavigationProperty Name="ModuleMappings" Relationship="Self.FK__ModuleMap__Custo__33D4B598" FromRole="Customer" ToRole="ModuleMapping" />
     <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__CustomerI__49C3F6B7" FromRole="Customer" ToRole="Staff" />
     <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Custome__5535A963" FromRole="Customer" ToRole="Subject" />
+    <NavigationProperty Name="QuestionTypes" Relationship="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3" FromRole="Customer" ToRole="QuestionType" />
   </EntityType>
   <EntityType Name="CustomerType">
     <Key>
@@ -525,5 +526,36 @@
       <End Role="Staff" EntitySet="Staffs" />
       <End Role="Subject" EntitySet="Subjects" />
     </AssociationSet>
+    <EntitySet Name="QuestionTypes" EntityType="saravananjagan_PMSModel.QuestionType" />
+    <AssociationSet Name="FK__QuestionT__Custo__6477ECF3" Association="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="QuestionType" EntitySet="QuestionTypes" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="QuestionType">
+    <Key>
+      <PropertyRef Name="QuestionTypeId" />
+    </Key>
+    <Property Name="QuestionTypeId" Type="Guid" Nullable="false" />
+    <Property Name="QuestionType1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AddedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Guid" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3" FromRole="QuestionType" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK__QuestionT__Custo__6477ECF3">
+    <End Type="saravananjagan_PMSModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="saravananjagan_PMSModel.QuestionType" Role="QuestionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="QuestionType">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

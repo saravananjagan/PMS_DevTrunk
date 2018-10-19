@@ -12,18 +12,10 @@ namespace PMS_WebAppEFV2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ExaminationType
+    public partial class QuestionType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ExaminationType()
-        {
-            this.ExaminationSchedules = new HashSet<ExaminationSchedule>();
-        }
-    
-        public System.Guid ExaminationTypeId { get; set; }
-        public string ExaminationType1 { get; set; }
-        public System.TimeSpan duration { get; set; }
-        public int totalmarks { get; set; }
+        public System.Guid QuestionTypeId { get; set; }
+        public string QuestionType1 { get; set; }
         public System.Guid CustomerId { get; set; }
         public System.DateTime AddedOn { get; set; }
         public System.Guid AddedBy { get; set; }
@@ -32,7 +24,5 @@ namespace PMS_WebAppEFV2.Models
         public bool Status { get; set; }
     
         public virtual Customer Customer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExaminationSchedule> ExaminationSchedules { get; set; }
     }
 }

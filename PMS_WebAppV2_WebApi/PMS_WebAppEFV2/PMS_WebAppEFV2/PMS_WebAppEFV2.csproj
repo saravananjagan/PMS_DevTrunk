@@ -209,6 +209,7 @@
     <Compile Include="Models\ExaminationType.cs">
       <DependentUpon>PMS_DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExaminationTypeParameters.cs" />
     <Compile Include="Models\MembershipType.cs">
       <DependentUpon>PMS_DBModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +233,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PMS_DBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuestionType.cs">
+      <DependentUpon>PMS_DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Staff.cs">
       <DependentUpon>PMS_DBModel.tt</DependentUpon>

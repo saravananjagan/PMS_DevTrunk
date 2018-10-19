@@ -35,6 +35,8 @@
         <AssociationConnector Association="saravananjagan_PMSModel.FK__Examinati__Subje__59063A47" ManuallyRouted="false" />
         <AssociationConnector Association="saravananjagan_PMSModel.FK__ModuleMap__Modul__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="saravananjagan_PMSModel.FK__Subject__StaffId__5441852A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="saravananjagan_PMSModel.QuestionType" Width="1.5" PointX="5.25" PointY="22.375" />
+        <AssociationConnector Association="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
