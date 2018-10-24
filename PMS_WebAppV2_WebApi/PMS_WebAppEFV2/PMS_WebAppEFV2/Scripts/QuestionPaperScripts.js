@@ -43,10 +43,10 @@ function SelectExaminationType(ExaminationTypeId, ExaminationType, ExaminationDu
 //#region AddPart
 function AddPart() {
 	_partCounter++;
+	console.log(_partCounter);
 	$(".PartTemplate .PartTemplate_Initial").clone().appendTo("#PartsContainer");
 	$("#PartsContainer").append("<br>");
-	$("#PartsContainer .PartTemplate_Initial").attr("id", "PartTemplate_" + _partCounter);
-	
+	$("#PartsContainer .PartTemplate_Initial").last().attr("id", _partCounter);
 }
 //#endregion
 
@@ -66,14 +66,23 @@ function GetQuestionTypes() {
 }
 function FillQuestionTypes(QuestionTypeData) {
 	$.each(QuestionTypeData, function () {
-		var anchor = $("<a>", { "class": "dropdown-item", "id": this.QuestionTypeId.toString(), "href": "#", "onclick": "SelectQuestionType('" + this.QuestionTypeId.toString() + "','" + this.QuestionType1.toString() + "')" });
+		var anchor = $("<a>", { "class": "dropdown-item", "id": this.QuestionTypeId.toString(), "href": "#", "onclick": "SelectQuestionType('" + this.QuestionTypeId.toString() + "','" + this.QuestionType1.toString() + "',this)" });
 		anchor.html(this.QuestionType1.toString());
 		$("#QuestionTypeDropdown").append(anchor);
 		$("#QuestionTypeDropdown").append("<div class=\"dropdown-divider\"></div>")
 	});
 	$("#QuestionTypeDropdown .dropdown-divider").last().remove();
 }
-function SelectQuestionType(QuestionTypeId, QuestionType) {
+function SelectQuestionType(QuestionTypeId, QuestionType, element) {
+	$(element).parent().siblings(".QuestionTypeSelectedText").html(QuestionType);
+	$(element).parent().siblings(".QuestionTypeSelectedText").attr("id", "QuestionType_" + QuestionTypeId);
+	var partContainerId = $(element).closest(".PartTemplate_Initial").attr("id");
+	$(element).closest(".PartTemplate_Initial").find(".add-questions").attr("onclick", "AddQuestions('" + partContainerId + "','" + QuestionTypeId+"')");
+}
+//#endregion
 
+//#region AddQuestions
+function AddQuestions(partContainerId, QuestionTypeId) {
+	
 }
 //#endregion
