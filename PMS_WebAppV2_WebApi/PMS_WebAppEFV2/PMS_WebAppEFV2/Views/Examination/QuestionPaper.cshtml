@@ -30,6 +30,8 @@
 	<div class="PartTemplate">
 		<div class="card border-primary PartTemplate_Initial">
 			<div class="card-body">
+				<div class="alert alert-danger partError" role="alert" style="display:none">
+				</div>
 				<div class="dropdown">
 					<h5>
 						Question Type : <button type="button" class="btn btn-outline-primary dropdown-toggle QuestionTypeSelectedText" data-toggle="dropdown">
@@ -39,15 +41,18 @@
 						</div>
 					</h5>
 				</div>
-				<h3 class="card-title">
-					Part Name:
-					<input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName">
-					<button class="btn btn-primary add-questions" style="display:inline-block;float:right;" onclick="AddQuestions()">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
-					<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="M"><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
-					<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
-					<input type="text" class="form-control" style="width:4%;display:inline-block;float:right;" placeholder="Q">
-				</h3>
-				<br>
+				<div class="Questions">
+					<h3 class="card-title">
+						Part Name:
+						<input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName">
+						<button class="btn btn-primary add-questions" style="display:inline-block;float:right;" onclick="AddQuestions()">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
+						<input type="text" class="form-control NumberOfQuestions" style="width:4%;display:inline-block;float:right;" placeholder="N"><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
+						<input type="text" class="form-control MarksPerQuestion" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
+						<input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q">
+					</h3>
+					<br>
+				</div>
+				<br />
 				<div class="card-footer custom-footer">
 					<button class="btn btn-primary right-position round-btn add-questions" onclick="AddQuestions()"><i class="fa fa-plus"></i></button>
 				</div>
@@ -56,16 +61,20 @@
 	</div>
 </div>
 <div id="QuestionTemplate" class="container-fluid" style="display:none;">
-	<textarea class="form-control" rows="2" placeholder="Question" style="width:95%;display:inline-block;"></textarea><button class="btn btn-danger" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
+	<div class="QuestionInputDiv">
+		<textarea class="form-control" rows="2" placeholder="Question" style="width:95%;display:inline-block;"></textarea><button class="btn btn-danger" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
+	</div>
 </div>
 <div id="OptionTemplate" class="container-fluid" style="display:none;">
-	<div class="choice-div">
-		<input type="text" class="form-control form-control-sm" placeholder="Choice" style="width:30%;display:inline-block;">
-		&nbsp;
-		<button class="btn btn-danger" style="border-radius:50%;"><i class="fa fa-remove"></i></button>
-	</div><br>
-	<div class="add-choice">
-		<button class="btn btn-success">Add Choice</button>
+	<div class="OptionInputDiv">
+		<div class="choice-div">
+			<input type="text" class="form-control form-control-sm" placeholder="Choice" style="width:30%;display:inline-block;">
+			&nbsp;
+			<button class="btn btn-danger" style="border-radius:50%;"><i class="fa fa-remove"></i></button>
+		</div><br>
+		<div class="add-choice">
+			<button class="btn btn-success">Add Choice</button>
+		</div>
 	</div>
 </div>
 <script src="~/Scripts/QuestionPaperScripts.js"></script>

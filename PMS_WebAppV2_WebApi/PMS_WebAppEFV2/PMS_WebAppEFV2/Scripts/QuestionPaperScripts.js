@@ -1,4 +1,5 @@
 ﻿var _partCounter = 0;
+var _questionCounter = 0;
 $(document).ready(function () {
 	GetExaminationTypes();
 	GetQuestionTypes();
@@ -43,10 +44,9 @@ function SelectExaminationType(ExaminationTypeId, ExaminationType, ExaminationDu
 //#region AddPart
 function AddPart() {
 	_partCounter++;
-	console.log(_partCounter);
 	$(".PartTemplate .PartTemplate_Initial").clone().appendTo("#PartsContainer");
 	$("#PartsContainer").append("<br>");
-	$("#PartsContainer .PartTemplate_Initial").last().attr("id", _partCounter);
+	$("#PartsContainer .PartTemplate_Initial").last().attr("id", "Part_"+_partCounter);
 }
 //#endregion
 
@@ -83,6 +83,27 @@ function SelectQuestionType(QuestionTypeId, QuestionType, element) {
 
 //#region AddQuestions
 function AddQuestions(partContainerId, QuestionTypeId) {
-	
+	if ($("#" + partContainerId + " .NumberOfQuestions").val() != null && $("#" + partContainerId + " .NumberOfQuestions").val() != "") {
+		_questionCounter++;
+		if (QuestionTypeId.toUpperCase() == 'DD0EBD1E-DE86-4A1F-AF2B-A0FA38DE2B9A') {
+			$("#QuestionTemplate .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
+			$("#OptionTemplate .OptionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
+			$("#PartsContainer .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
+		} else {
+			$("#" + partContainerId + " .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
+			$("#PartsContainer .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
+		}
+		ValidateNumberOfQuestions(partContainerId);
+	}
+	else {
+		$("#" + partContainerId + " .partError").html("Please fill the Number of questions (input with 'N' place holder) and marks for each question (input with 'm' place holder)");
+	}
 }
+function ValidateNumberOfQuestions(partContainerId) {
+	var NumberOfQuestions = $("#" + partContainerId + " .NumberOfQuestions").val();
+	if (_questionCounter == partContainerId) {
+		$("#" + partContainerId + " .add-questions").addClass('disabled');
+	}
+}
+
 //#endregion
