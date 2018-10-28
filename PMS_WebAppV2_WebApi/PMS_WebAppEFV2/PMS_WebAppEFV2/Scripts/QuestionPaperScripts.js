@@ -93,17 +93,13 @@ function AddQuestions(partContainerId, QuestionTypeId) {
 			$("#" + partContainerId + " .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
 			$("#PartsContainer .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
 		}
-		ValidateNumberOfQuestions(partContainerId);
 	}
 	else {
 		$("#" + partContainerId + " .partError").html("Please fill the Number of questions (input with 'N' place holder) and marks for each question (input with 'm' place holder)");
+		$("#" + partContainerId + " .partError").addClass("alert-danger")
+		$("#" + partContainerId + " .partError").show();
+		$("#" + partContainerId + " .NumberOfQuestions").addClass("is-invalid");
+		$("#" + partContainerId + " .MarksPerQuestion").addClass("is-invalid");
 	}
 }
-function ValidateNumberOfQuestions(partContainerId) {
-	var NumberOfQuestions = $("#" + partContainerId + " .NumberOfQuestions").val();
-	if (_questionCounter == partContainerId) {
-		$("#" + partContainerId + " .add-questions").addClass('disabled');
-	}
-}
-
 //#endregion
