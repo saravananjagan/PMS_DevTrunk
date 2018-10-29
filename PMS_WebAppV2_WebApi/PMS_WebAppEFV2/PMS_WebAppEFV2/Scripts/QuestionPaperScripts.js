@@ -83,23 +83,49 @@ function SelectQuestionType(QuestionTypeId, QuestionType, element) {
 
 //#region AddQuestions
 function AddQuestions(partContainerId, QuestionTypeId) {
-	if ($("#" + partContainerId + " .NumberOfQuestions").val() != null && $("#" + partContainerId + " .NumberOfQuestions").val() != "") {
+	RemovePartError("#" + partContainerId + " .partError", false);
+	$("#" + partContainerId + " .NumberOfQuestions").removeClass("is-invalid");
+	$("#" + partContainerId + " .MarksPerQuestion").removeClass("is-invalid");
+	$("#" + partContainerId + " .QuestionTypeSelectedText").removeClass("btn-outline-danger");
+	$("#" + partContainerId + " .QuestionTypeSelectedText").addClass("btn-outline-primary");
+	if ($("#" + partContainerId + " .NumberOfQuestions").val() != null && $("#" + partContainerId + " .NumberOfQuestions").val() != "" && QuestionTypeId!= undefined) {
 		_questionCounter++;
 		if (QuestionTypeId.toUpperCase() == 'DD0EBD1E-DE86-4A1F-AF2B-A0FA38DE2B9A') {
 			$("#QuestionTemplate .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
 			$("#OptionTemplate .OptionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
 			$("#PartsContainer .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
 		} else {
-			$("#" + partContainerId + " .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
+			$("#QuestionTemplate .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
 			$("#PartsContainer .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
 		}
 	}
 	else {
-		$("#" + partContainerId + " .partError").html("Please fill the Number of questions (input with 'N' place holder) and marks for each question (input with 'm' place holder)");
-		$("#" + partContainerId + " .partError").addClass("alert-danger")
-		$("#" + partContainerId + " .partError").show();
+		AddPartError("#" + partContainerId + " .partError", "Please fill the Number of questions (input with 'N' place holder) and marks for each question (input with 'm' place holder) and also select the question type", true);
 		$("#" + partContainerId + " .NumberOfQuestions").addClass("is-invalid");
 		$("#" + partContainerId + " .MarksPerQuestion").addClass("is-invalid");
+		$("#" + partContainerId + " .QuestionTypeSelectedText").removeClass("btn-outline-primary");
+		$("#" + partContainerId + " .QuestionTypeSelectedText").addClass("btn-outline-danger");
 	}
+}
+//#endregion
+
+//#region ErrorConfig
+function AddPartError(Selector, ErrorText, IsError) {
+	$(Selector).html(ErrorText);
+	if (IsError) {
+		$(Selector).addClass("alert-danger");
+	} else {
+		$(Selector).addClass("alert-success");
+	}
+	$(Selector).show();
+}
+function RemovePartError(Selector,IsError) {
+	$(Selector).html("");
+	if (IsError) {
+		$(Selector).removeClass("alert-danger");
+	} else {
+		$(Selector).removeClass("alert-success");
+	}
+	$(Selector).hide();
 }
 //#endregion
