@@ -1,0 +1,28 @@
+Title: Education PMS
+Module: Question paper generator
+Objective: To create question paper for various classes from multiple devices(Mobile and PC) and to export the same in the form of corresponding templates of the institution. The same must be logged in the Database after save and export events for future reference and modifications.
+NFR: User Friendly, Form Validations for total marks with each parts and the total marks for the corresponding examination, Number only validation marks and other fields.
+PHASE 1
+Splitups(abstract): - Till Plain Text Export (Client functionality except the html to doc )
+			- all question field types functionality in js and html css
+				-MCQ 
+					-text area CRUD
+					-choice(input) CRUD
+				-Subjective
+					-text area CRUD
+			- Export template
+				- DOM Template with inline styles and without JS for one standard question template
+
+				
+PLAN TO FURTHER AHEAD:
+Resources alocations
+1. Saravanan : CRUDs
+2. Tamil: Export Functionality
+
+Progress Plan:
+1. develop crud and export separately and unit test the same.
+2. integrate both the functionalities and unit test the same.
+3. implement the same in Mobile application using ionic.
+4. deploy the same in free host servers(both db and site).
+
+NOTE: Create the api controller in such a way that this can be used for mobile application too. Should not make any rework for site and Mobile application.
