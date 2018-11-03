@@ -62,7 +62,7 @@
 </div>
 <div id="QuestionTemplate" class="container-fluid" style="display:none;">
 	<div class="QuestionInputDiv">
-		<textarea class="form-control" rows="2" placeholder="Question" style="width:95%;display:inline-block;"></textarea><button class="btn btn-danger" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
+		<textarea class="form-control" rows="2" placeholder="Question" style="width:95%;display:inline-block;"></textarea><button class="btn btn-danger RemoveQuestion" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
 	</div>
 </div>
 <div id="OptionTemplate" class="container-fluid" style="display:none;">
@@ -70,10 +70,30 @@
 		<div class="choice-div">
 			<input type="text" class="form-control form-control-sm" placeholder="Choice" style="width:30%;display:inline-block;">
 			&nbsp;
-			<button class="btn btn-danger" style="border-radius:50%;"><i class="fa fa-remove"></i></button>
+			<button class="btn btn-danger remove-choice" style="border-radius:50%;"><i class="fa fa-remove"></i></button>
 		</div><br>
-		<div class="add-choice">
-			<button class="btn btn-success">Add Choice</button>
+		
+			<button class="btn btn-success add-choice" onclick="AddChoice(this)">Add Choice</button>
+		
+	</div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="WarningModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myLargeModalLabel">Warning!!</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Changing the Question types will clear the existing questions in the corresponding part.\n\nAre you sure?
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary Confirm" style="float:right;">Ok</button>
+				<button class="btn btn-secondary Cancel" style="float:right;">Cancel</button>
+			</div>
 		</div>
 	</div>
 </div>
