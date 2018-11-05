@@ -90,13 +90,14 @@ function AddQuestions(partContainerId, QuestionTypeId) {
 	if (QuestionTypeId != undefined && QuestionTypeId!=null) {
 		_questionCounter++;
 		if (QuestionTypeId.toUpperCase() == 'DD0EBD1E-DE86-4A1F-AF2B-A0FA38DE2B9A') {
-			$("#QuestionTemplate .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
-			$("#OptionTemplate .OptionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
+			$("#QuestionTemplate .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");			
 			$("#" + partContainerId + " .Questions .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
+			AddChoice(true, partContainerId, "Question_" + _questionCounter, 0);			
 		} else {
 			$("#QuestionTemplate .QuestionInputDiv").clone().appendTo("#" + partContainerId + " .Questions");
 			$("#" + partContainerId + " .Questions .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
 		}
+		$("#Question_" + _questionCounter + " .remove-question").attr("onclick", "RemoveQuestion('Question_" + _questionCounter + "')");
 	}
 	else {
 		AddPartError("#" + partContainerId + " .partError", "Please select the question type", true);
@@ -106,9 +107,38 @@ function AddQuestions(partContainerId, QuestionTypeId) {
 }
 //#endregion
 
-//#region AddChoice
-function AddChoice() {
+//#region RemoveQuestion
+function RemoveQuestion(QuestionContainerId) {
+	$("#" + QuestionContainerId).remove();
+}
+//#endregion
 
+//#region AddChoice
+function AddChoice(AddChoiceIntial, PartContainerId, QuestionContainerId, ChoiceCounter) {
+	if (AddChoiceIntial) {		
+		$("#OptionTemplate .OptionInputDiv").clone().appendTo("#" + PartContainerId + " #" + QuestionContainerId);
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .choice-div").attr("id", PartContainerId + QuestionContainerId + "Choice_" + ChoiceCounter);
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .remove-choice").attr("onclick", "RemoveChoice('" + PartContainerId + QuestionContainerId + "Choice_" + ChoiceCounter + "')");
+		ChoiceCounter++;
+		$("#OptionTemplate .OptionInputDiv .choice-div").clone().insertBefore("#" + PartContainerId + " #" + QuestionContainerId + " .OptionInputDiv .add-choice");
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .choice-div").last().attr("id", PartContainerId + QuestionContainerId + "Choice_" + ChoiceCounter);
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .remove-choice").last().attr("onclick", "RemoveChoice('" + PartContainerId + QuestionContainerId + "Choice_" + ChoiceCounter + "')");
+		ChoiceCounter++;
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .add-choice").attr("onclick", "AddChoice(false,'" + PartContainerId + "','" + QuestionContainerId + "','" + ChoiceCounter + "')");
+	}
+	else {
+		$("#OptionTemplate .OptionInputDiv .choice-div").clone().insertBefore("#" + PartContainerId + " #" + QuestionContainerId + " .OptionInputDiv .add-choice");
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .choice-div").last().attr("id", PartContainerId + QuestionContainerId + "Choice_" + ChoiceCounter);
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .remove-choice").last().attr("onclick", "RemoveChoice('" + PartContainerId + QuestionContainerId + "Choice_" + ChoiceCounter + "')");
+		ChoiceCounter++;
+		$("#" + PartContainerId + " #" + QuestionContainerId + " .add-choice").attr("onclick", "AddChoice(false,'" + PartContainerId + "','" + QuestionContainerId + "','" + ChoiceCounter + "')")
+	}
+}
+//#endregion
+
+//#region RemoveChoice
+function RemoveChoice(ChoiceContainerId) {
+	$("#"+ChoiceContainerId).remove();
 }
 //#endregion
 
