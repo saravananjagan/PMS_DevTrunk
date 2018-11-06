@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace PMS_WebAppEFV2.Controllers
 {
@@ -14,6 +15,7 @@ namespace PMS_WebAppEFV2.Controllers
         private PMSEntities db = new PMSEntities();
 
         [HttpPost]
+        [Route("api/SubmitQuestions")]
         public HttpResponseMessage SubmitQuestionPaperFormData(JObject FormInputs)
         {
 
@@ -24,6 +26,6 @@ namespace PMS_WebAppEFV2.Controllers
         public IQueryable<QuestionType> GetQuestionTypes()
         {
             return db.QuestionTypes;
-        }
+        }        
     }
 }

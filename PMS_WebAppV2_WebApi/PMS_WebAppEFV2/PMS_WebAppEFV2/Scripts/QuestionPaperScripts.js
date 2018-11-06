@@ -162,3 +162,23 @@ function RemovePartError(Selector,IsError) {
 	$(Selector).hide();
 }
 //#endregion
+
+//#region FormSubmit
+function FormSubmit(FormId) {
+	var Formdetails = $("#" + FormId);
+	var SerializedForm = Formdetails.serialize();
+
+	$.ajax({
+		url: 'http://localhost:57460/api/SubmitQuestions',
+		type: 'POST',
+		dataType: 'json',
+		data: { FormInputs: SerializedForm},
+		success: function (data) {
+			console.log(data);
+		},
+		error: function (e) {
+			console.log(e);
+		}
+	});	
+}
+//#endregion
