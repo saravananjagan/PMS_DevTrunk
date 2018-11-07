@@ -82,6 +82,22 @@ function SelectQuestionType(QuestionTypeId, QuestionType, element) {
 }
 //#endregion
 
+//#region TotalMarksCalculation
+function TotalMarksCalculation(element,classString) {
+	if (classString == 'NumberOfQuestions') {
+		if ($(element).siblings(".MarksPerQuestion").val() != '' && $(element).siblings(".MarksPerQuestion").val() != undefined && $(element).siblings(".MarksPerQuestion").val() != null) {
+			var totalMarks = $(element).val() * $(element).siblings(".MarksPerQuestion").val();
+			$(element).siblings(".TotalMarks").val(totalMarks);
+		}
+	} else {
+		if ($(element).siblings(".NumberOfQuestions").val() != '' && $(element).siblings(".NumberOfQuestions").val() != undefined && $(element).siblings(".NumberOfQuestions").val() != null) {
+			var totalMarks = $(element).val() * $(element).siblings(".NumberOfQuestions").val();
+			$(element).siblings(".TotalMarks").val(totalMarks);
+		}
+	}
+}
+//#endregion
+
 //#region AddQuestions
 function AddQuestions(partContainerId, QuestionTypeId) {
 	RemovePartError("#" + partContainerId + " .partError", false);

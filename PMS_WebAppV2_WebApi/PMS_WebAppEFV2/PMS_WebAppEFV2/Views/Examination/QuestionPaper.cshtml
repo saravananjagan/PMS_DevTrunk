@@ -50,8 +50,8 @@
 						<input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName" name="PartName">
 						<button type="button" class="btn btn-primary add-questions" style="display:inline-block;float:right;" onclick="AddQuestions()">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
 						<input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q" disabled><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
-						<input type="text" class="form-control MarksPerQuestion" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
-						<input type="text" class="form-control NumberOfQuestions" style="width:4%;display:inline-block;float:right;" placeholder="N">
+						<input type="text" class="form-control MarksPerQuestion" onkeyup="TotalMarksCalculation(this,'MarksPerQuestion')" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
+						<input type="text" class="form-control NumberOfQuestions" onkeyup="TotalMarksCalculation(this,'NumberOfQuestions')" style="width:4%;display:inline-block;float:right;" placeholder="N">
 					</h3>
 					<br>
 				</div>
