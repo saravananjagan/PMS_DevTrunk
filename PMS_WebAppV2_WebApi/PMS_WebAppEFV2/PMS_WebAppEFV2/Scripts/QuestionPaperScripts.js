@@ -8,7 +8,7 @@ $(document).ready(function () {
 function GetExaminationTypes() {
 	showLoader();
 	$.ajax({
-		url: 'http://localhost:57460/api/GetExaminationTypes',
+		url: 'http://indianeeds.somee.com/api/GetExaminationTypes',
 		type: 'GET',
 		dataType: 'json',
 		success: function (data) {
@@ -54,7 +54,7 @@ function AddPart() {
 //#region QuestionTypes
 function GetQuestionTypes() {
 	$.ajax({
-		url: 'http://localhost:57460/api/GetQuestionTypes',
+		url: 'http://indianeeds.somee.com/api/GetQuestionTypes',
 		type: 'GET',
 		dataType: 'json',
 		success: function (data) {
@@ -185,7 +185,7 @@ function FormSubmit(FormId) {
 	var SerializedForm = Formdetails.serialize();
 
 	$.ajax({
-		url: 'http://localhost:57460/api/SubmitQuestions',
+		url: 'http://indianeeds.somee.com/api/SubmitQuestions',
 		type: 'POST',
 		dataType: 'json',
 		data: { FormInputs: SerializedForm},

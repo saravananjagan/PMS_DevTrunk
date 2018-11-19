@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">-->
+    <title>Question Paper</title>
+</head>
+<body>
+    <div id="overlay"></div>
+    <br />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="dropdown">
+            <h5>
+                Exam Type : <button type="button" class="btn btn-outline-primary dropdown-toggle ExaminationTypeSelectedText" data-toggle="dropdown">
+                    --Please Select--
+                </button>
+                <div class="dropdown-menu" id="ExaminationTypeDropDown">
+                </div><br /><br />
+                <button type="button" class="btn btn-success" style="float:left" onclick="AddPart()">
+                    Add part
+                </button>
+            </h5>
+        </div>
+    </div><br /><br />
+    <div class="container-fluid">
+        <input type="text" class="form-control form-control-lg text-center" placeholder="Subject Title"><br>
+        <div class="row">
+            <div class="col-6">
+                <input class="form-control left-aligned-small-input text-center" id="ExaminationDuration" type="text" placeholder="Time" disabled>
+            </div>
+            <div class="col-6">
+                <input class="form-control right-aligned-small-input text-center" id="ExaminationTotalMarks" type="text" placeholder="Marks" disabled>
+            </div>
+        </div>
+    </div><br />
+    <form id="QuestionPaperForm">
+        <div class="container-fluid" id="PartsContainer">
+
+        </div>
+        <button type="button" class="btn btn-primary submit-questions" style="display:inline-block;float:right;" onclick="FormSubmit('QuestionPaperForm')">Submit Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
+    </form>
+    <div class="container-fluid" style="display:none;">
+        <div class="PartTemplate">
+            <div class="card border-primary PartTemplate_Initial">
+                <div class="card-body">
+                    <div class="alert partError" role="alert" style="display:none">
+                    </div>
+                    <div class="dropdown">
+                        <h5>
+                            Question Type : <button type="button" class="btn btn-outline-primary dropdown-toggle QuestionTypeSelectedText" data-toggle="dropdown">
+                                --Please Select--
+                            </button>
+                            <div class="dropdown-menu" id="QuestionTypeDropdown">
+                            </div>
+                        </h5>
+                    </div>
+                    <div class="Questions">
+                        <h3 class="card-title">
+                            Part Name:
+                            <input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName" name="PartName">
+                            <button type="button" class="btn btn-primary add-questions" style="display:inline-block;float:right;" onclick="AddQuestions()">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
+                            <input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q" disabled><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
+                            <input type="text" class="form-control MarksPerQuestion" onkeyup="TotalMarksCalculation(this,'MarksPerQuestion')" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
+                            <input type="text" class="form-control NumberOfQuestions" onkeyup="TotalMarksCalculation(this,'NumberOfQuestions')" style="width:4%;display:inline-block;float:right;" placeholder="N">
+                        </h3>
+                        <br>
+                    </div>
+                    <br />
+                    <div class="card-footer custom-footer">
+                        <button type="button" class="btn btn-primary right-position round-btn add-questions" onclick="AddQuestions()"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="QuestionTemplate" class="container-fluid" style="display:none;">
+        <div class="QuestionInputDiv">
+            <textarea class="form-control" rows="2" placeholder="Question" style="width:95%;display:inline-block;" name="Question"></textarea><button type="button" class="btn btn-danger remove-question" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
+        </div>
+    </div>
+    <div id="OptionTemplate" class="container-fluid" style="display:none;">
+        <div class="OptionInputDiv">
+            <div class="choice-div">
+                <input type="text" class="form-control form-control-sm" placeholder="Choice" style="width:30%;display:inline-block;" name="choice">
+                &nbsp;
+                <button type="button" class="btn btn-danger remove-choice" style="border-radius:50%;"><i class="fa fa-remove"></i></button>
+            </div>
+            <button type="button" class="btn btn-success add-choice">Add Choice</button>
+        </div>
+    </div>
+    <div id="loader"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>
