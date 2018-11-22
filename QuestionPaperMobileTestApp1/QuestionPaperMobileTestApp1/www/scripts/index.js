@@ -6,7 +6,8 @@
     "use strict";
 
     document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
-
+    GetExaminationTypes();
+    GetQuestionTypes();
     function onDeviceReady() {
         // Handle the Cordova pause and resume events
         document.addEventListener( 'pause', onPause.bind( this ), false );
@@ -18,8 +19,7 @@
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
-        GetExaminationTypes();
-        GetQuestionTypes();
+        
     };
 
     function onPause() {
