@@ -1,7 +1,18 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+html {
+    overflow: auto;
+}
 
+body {
+    height: auto;
+    overflow: auto;
+}
+
+.scrollable {
+    position: inherit;
+}
 body {
     /*-webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
@@ -157,3 +168,5 @@ h1 {
     float: right;
     width: 50% !important;
 }
+
+

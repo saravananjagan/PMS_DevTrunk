@@ -8,6 +8,7 @@
     document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
     GetExaminationTypes();
     GetQuestionTypes();
+    
     function onDeviceReady() {
         // Handle the Cordova pause and resume events
         document.addEventListener( 'pause', onPause.bind( this ), false );
@@ -32,7 +33,39 @@
 
 //#endregion
 })();
-
+function inputScrollTop() {
+    $('input').focusin(function (e) {
+        var $input = $(this);
+        //$input.css('background', 'yellow');
+        ////alert($input.offset().top);
+        //var scroll = $input.offset();
+        //$('#viewport').animate({
+        //    scrollTop: $input.offset().top-100
+        //}, 500);
+        var boxheight = $(window).height() - 40;
+        $("#viewport").append("<div id='blank' style='height:" + boxheight + "px;'" + "></div>");
+        $('html, body').animate({ scrollTop: $input.offset().top - 100 }, 500);
+    });
+    $('input').focusout(function (e) {
+        $('#blank').remove();
+    });
+    $('textarea').focusin(function (e) {
+        var $input = $(this);
+        //var $input = $(this);
+        //$input.css('background', 'yellow');
+        ////alert($input.offset().top);
+        //    var scroll = $input.offset();
+        //    $('#viewport').animate({
+        //        scrollTop: $input.offset().top-100
+        //    }, 500);
+        var boxheight = $(window).height() - 40;
+        $("#viewport").append("<div id='blank' style='height:" + boxheight + "px;'" + "></div>");
+        $('html, body').animate({ scrollTop: $input.offset().top - 100 }, 500);
+    });
+    $('textarea').focusout(function (e) {
+        $('#blank').remove();
+    });
+}
 function showLoader() {
     document.getElementById("overlay").style.display = "block";
     document.getElementById("loader").style.display = "block";
@@ -87,6 +120,7 @@ function AddPart() {
     $("#PartsContainer").append("<br>");
     $("#PartsContainer .PartTemplate_Initial").last().attr("id", "Part_" + _partCounter);
     $("#Part_" + _partCounter).find(".add-questions").attr("onclick", "AddQuestions('Part_" + _partCounter + "',null)");
+    inputScrollTop();
 }
 //#endregion
 
@@ -153,6 +187,7 @@ function AddQuestions(partContainerId, QuestionTypeId) {
             $("#" + partContainerId + " .Questions .QuestionInputDiv").last().attr("id", "Question_" + _questionCounter);
         }
         $("#Question_" + _questionCounter + " .remove-question").attr("onclick", "RemoveQuestion('Question_" + _questionCounter + "')");
+        inputScrollTop();
     }
     else {
         AddPartError("#" + partContainerId + " .partError", "Please select the question type", true);
@@ -188,6 +223,7 @@ function AddChoice(AddChoiceIntial, PartContainerId, QuestionContainerId, Choice
         ChoiceCounter++;
         $("#" + PartContainerId + " #" + QuestionContainerId + " .add-choice").attr("onclick", "AddChoice(false,'" + PartContainerId + "','" + QuestionContainerId + "','" + ChoiceCounter + "')")
     }
+    inputScrollTop();
 }
 //#endregion
 

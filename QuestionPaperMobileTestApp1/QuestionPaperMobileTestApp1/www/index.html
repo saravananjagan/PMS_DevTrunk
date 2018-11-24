@@ -11,10 +11,11 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">-->
     <title>Question Paper</title>
 </head>
-<body>
+<body id="viewport">
     <div id="overlay"></div>
     <br />
     <br />
@@ -57,23 +58,26 @@
                     <div class="alert partError" role="alert" style="display:none">
                     </div>
                     <div class="dropdown">
-                        <h5>
+                        <h6>
                             Question Type : <button type="button" class="btn btn-outline-primary dropdown-toggle QuestionTypeSelectedText" data-toggle="dropdown">
                                 --Please Select--
                             </button>
                             <div class="dropdown-menu" id="QuestionTypeDropdown">
                             </div>
-                        </h5>
+                        </h6>
                     </div>
                     <div class="Questions">
-                        <h3 class="card-title">
+                        <h5 class="card-title">
                             Part Name:
-                            <input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName" name="PartName">
+                            <input type="text" class="form-control" style="width:100%;display:inline-block;" placeholder="PartName" name="PartName"><br /><br />
                             <button type="button" class="btn btn-primary add-questions" style="display:inline-block;float:right;" onclick="AddQuestions()">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
-                            <input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q" disabled><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
-                            <input type="text" class="form-control MarksPerQuestion" onkeyup="TotalMarksCalculation(this,'MarksPerQuestion')" style="width:4%;display:inline-block;float:right;" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
-                            <input type="text" class="form-control NumberOfQuestions" onkeyup="TotalMarksCalculation(this,'NumberOfQuestions')" style="width:4%;display:inline-block;float:right;" placeholder="N">
-                        </h3>
+                            <input type="text" class="form-control NumberOfQuestions" onkeyup="TotalMarksCalculation(this,'NumberOfQuestions')" style="width:13%;display:inline-block;float:left;" placeholder="N">&nbsp;
+                            <p class="text-center" style="width:3%;display:inline-block;float:left;">x</p>
+                            <input type="text" class="form-control MarksPerQuestion" onkeyup="TotalMarksCalculation(this,'MarksPerQuestion')" style="width:13%;display:inline-block;float:left;" placeholder="m">&nbsp;
+                            <p class="text-center" style="width:3%;display:inline-block;float:left;">=</p>
+                            <input type="text" class="form-control TotalMarks" style="width:13%;display:inline-block;float:left;" placeholder="Q" disabled>
+                            <!--<input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q" disabled>-->
+                        </h5>
                         <br>
                     </div>
                     <br />
@@ -86,7 +90,7 @@
     </div>
     <div id="QuestionTemplate" class="container-fluid" style="display:none;">
         <div class="QuestionInputDiv">
-            <textarea class="form-control" rows="2" placeholder="Question" style="width:95%;display:inline-block;" name="Question"></textarea><button type="button" class="btn btn-danger remove-question" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
+            <textarea class="form-control" rows="2" placeholder="Question" style="width:80%;display:inline-block;" name="Question"></textarea><button type="button" class="btn btn-danger remove-question" style="border-radius:50%;float:right;"><i class="fa fa-trash-o"></i></button>
         </div>
     </div>
     <div id="OptionTemplate" class="container-fluid" style="display:none;">
