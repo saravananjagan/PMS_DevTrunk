@@ -142,6 +142,21 @@
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="QuestionPapers">
+          <Key>
+            <PropertyRef Name="QuestionPaperId" />
+          </Key>
+          <Property Name="QuestionPaperId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubjectName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="totalmarks" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="AddedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="QuestionType">
           <Key>
             <PropertyRef Name="QuestionTypeId" />
@@ -369,6 +384,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__QuestionP__Custo__6FE99F9F">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="QuestionPapers" Type="Self.QuestionPapers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="QuestionPapers">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__QuestionT__Custo__6477ECF3">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="*" />
@@ -439,6 +466,7 @@
           <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="ModuleDetails" EntityType="Self.ModuleDetails" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="ModuleMapping" EntityType="Self.ModuleMapping" Schema="Pms" store:Type="Tables" />
+          <EntitySet Name="QuestionPapers" EntityType="Self.QuestionPapers" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="Pms" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="Pms" store:Type="Tables" />
@@ -501,6 +529,10 @@
           <AssociationSet Name="FK__ModuleMap__Modul__34C8D9D1" Association="Self.FK__ModuleMap__Modul__34C8D9D1">
             <End Role="ModuleDetails" EntitySet="ModuleDetails" />
             <End Role="ModuleMapping" EntitySet="ModuleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionP__Custo__6FE99F9F" Association="Self.FK__QuestionP__Custo__6FE99F9F">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="QuestionPapers" EntitySet="QuestionPapers" />
           </AssociationSet>
           <AssociationSet Name="FK__QuestionT__Custo__6477ECF3" Association="Self.FK__QuestionT__Custo__6477ECF3">
             <End Role="Customer" EntitySet="Customer" />
@@ -574,6 +606,7 @@
           <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__CustomerI__49C3F6B7" FromRole="Customer" ToRole="Staff" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Custome__5535A963" FromRole="Customer" ToRole="Subject" />
           <NavigationProperty Name="QuestionTypes" Relationship="saravananjagan_PMSModel.FK__QuestionT__Custo__6477ECF3" FromRole="Customer" ToRole="QuestionType" />
+          <NavigationProperty Name="QuestionPapers" Relationship="saravananjagan_PMSModel.FK__QuestionP__Custo__6FE99F9F" FromRole="Customer" ToRole="QuestionPaper" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -1058,6 +1091,11 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="QuestionType" EntitySet="QuestionTypes" />
           </AssociationSet>
+          <EntitySet Name="QuestionPapers" EntityType="saravananjagan_PMSModel.QuestionPaper" />
+          <AssociationSet Name="FK__QuestionP__Custo__6FE99F9F" Association="saravananjagan_PMSModel.FK__QuestionP__Custo__6FE99F9F">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="QuestionPaper" EntitySet="QuestionPapers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="QuestionType">
           <Key>
@@ -1081,6 +1119,34 @@
               <PropertyRef Name="CustomerId" />
             </Principal>
             <Dependent Role="QuestionType">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="QuestionPaper">
+          <Key>
+            <PropertyRef Name="QuestionPaperId" />
+          </Key>
+          <Property Name="QuestionPaperId" Type="Guid" Nullable="false" />
+          <Property Name="SubjectName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="totalmarks" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddedBy" Type="Guid" Nullable="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="saravananjagan_PMSModel.FK__QuestionP__Custo__6FE99F9F" FromRole="QuestionPaper" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK__QuestionP__Custo__6FE99F9F">
+          <End Type="saravananjagan_PMSModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="saravananjagan_PMSModel.QuestionPaper" Role="QuestionPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="QuestionPaper">
               <PropertyRef Name="CustomerId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1284,6 +1350,22 @@
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="QuestionType1" ColumnName="QuestionType" />
                 <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionPapers">
+            <EntityTypeMapping TypeName="saravananjagan_PMSModel.QuestionPaper">
+              <MappingFragment StoreEntitySet="QuestionPapers">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="totalmarks" ColumnName="totalmarks" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="QuestionPaperId" ColumnName="QuestionPaperId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

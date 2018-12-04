@@ -25,6 +25,7 @@ namespace PMS_WebAppEFV2.Models
             this.Staffs = new HashSet<Staff>();
             this.Subjects = new HashSet<Subject>();
             this.QuestionTypes = new HashSet<QuestionType>();
+            this.QuestionPapers = new HashSet<QuestionPaper>();
         }
     
         public System.Guid CustomerId { get; set; }
@@ -58,5 +59,7 @@ namespace PMS_WebAppEFV2.Models
         public virtual ICollection<Subject> Subjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionType> QuestionTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuestionPaper> QuestionPapers { get; set; }
     }
 }

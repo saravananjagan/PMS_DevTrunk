@@ -217,7 +217,7 @@ function FormSubmit(FormId) {
             partJson.QuestionTypeId = this.value;
         }
         else if (this.name == 'TotalMarks') {
-            partJson.TotalMarks= this.value;
+            partJson.MarksPerPart= this.value;
         }
         else if (this.name == 'MarksPerQuestion') {
             partJson.MarksPerQuestion= this.value;

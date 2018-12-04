@@ -37,5 +37,6 @@ namespace PMS_WebAppEFV2.Models
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<QuestionType> QuestionTypes { get; set; }
+        public virtual DbSet<QuestionPaper> QuestionPapers { get; set; }
     }
 }
