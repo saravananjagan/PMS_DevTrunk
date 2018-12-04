@@ -8,7 +8,7 @@ $(document).ready(function () {
 function GetExaminationTypes() {
     showLoader();
     $.ajax({
-        url: 'http://localhost:57460/api/GetExaminationTypes',
+        url: 'http://indianeeds.somee.com/api/GetExaminationTypes',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -62,7 +62,7 @@ function RemovePart(PartContainerId) {
 //#region QuestionTypes
 function GetQuestionTypes() {
     $.ajax({
-        url: 'http://localhost:57460/api/GetQuestionTypes',
+        url: 'http://indianeeds.somee.com/api/GetQuestionTypes',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -87,6 +87,7 @@ function SelectQuestionType(QuestionTypeId, QuestionType, element) {
     $(element).parent().siblings(".QuestionTypeSelectedText").attr("id", "QuestionType_" + QuestionTypeId);
     var partContainerId = $(element).closest(".PartTemplate_Initial").attr("id");
     $(element).closest(".PartTemplate_Initial").find(".add-questions").attr("onclick", "AddQuestions('" + partContainerId + "','" + QuestionTypeId + "')");
+    $(element).closest(".PartTemplate_Initial").find(".QuestionType").val(QuestionTypeId);
 }
 //#endregion
 
@@ -209,11 +210,20 @@ function FormSubmit(FormId) {
             questionsArray = [];
             partJson.partOrdinal = this.value;
         }
-        //else if (this.name == 'PartName' && init_flag == 0) {
-        //    partJson.PartName = this.value;
-        //}
         else if (this.name == 'PartName') {
             partJson.PartName = this.value;
+        }
+        else if (this.name == 'QuestionTypeId') {
+            partJson.QuestionTypeId = this.value;
+        }
+        else if (this.name == 'TotalMarks') {
+            partJson.TotalMarks= this.value;
+        }
+        else if (this.name == 'MarksPerQuestion') {
+            partJson.MarksPerQuestion= this.value;
+        }
+        else if (this.name == 'NumberOfQuestions') {
+            partJson.NumberOfQuestions= this.value;
         }
         else if (this.name == 'questionOrdinal') {
             Question = {};
@@ -238,7 +248,6 @@ function FormSubmit(FormId) {
     });
     partJson.Questions = questionsArray;
     partForms.push(partJson);
-    console.log(partForms);
     $.ajax({
         url: 'http://localhost:57460/api/SubmitQuestions',
         type: 'POST',

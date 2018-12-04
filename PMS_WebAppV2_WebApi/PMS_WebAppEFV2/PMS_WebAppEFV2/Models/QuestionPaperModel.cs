@@ -12,6 +12,10 @@ namespace PMS_WebAppEFV2.Models
     public class PartForm
     {
         public string partOrdinal { get; set; }
+        public string QuestionTypeId { get; set; }
+        public string TotalMarks { get; set; }
+        public string MarksPerQuestion { get; set; }
+        public string NumberOfQuestions { get; set; }
         public string PartName { get; set; }
         public Question[] Questions { get; set; }
     }
