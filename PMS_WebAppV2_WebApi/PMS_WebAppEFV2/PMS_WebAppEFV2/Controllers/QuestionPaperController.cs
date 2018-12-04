@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PMS_WebAppEFV2.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,9 @@ namespace PMS_WebAppEFV2.Controllers
         [Route("api/SubmitQuestions")]
         public HttpResponseMessage SubmitQuestionPaperFormData(JObject FormInputs)
         {
-
+            dynamic inputValues = FormInputs;
+            QuestionPaperModel questionPaperModel = new QuestionPaperModel();
+            questionPaperModel = JsonConvert.DeserializeObject<QuestionPaperModel>(inputValues.ToString());
             return Request.CreateResponse(HttpStatusCode.OK);
         }
         [HttpGet]
@@ -26,6 +29,6 @@ namespace PMS_WebAppEFV2.Controllers
         public IQueryable<QuestionType> GetQuestionTypes()
         {
             return db.QuestionTypes;
-        }        
+        }
     }
 }

@@ -190,13 +190,60 @@ function RemovePartError(Selector, IsError) {
 //#region FormSubmit
 function FormSubmit(FormId) {
     var Formdetails = $("#" + FormId);
-    var SerializedForm = Formdetails.serialize();
-
+    var SerializedFormArray = Formdetails.serializeArray();
+    var init_flag = 0;
+    var partForms = [];
+    var partJson = {};
+    var questionsArray = [];
+    var Question = {};
+    var Choice = {};
+    var choiceArray = [];
+    $.each(SerializedFormArray, function () {
+        if (this.name == 'partOrdinal' && init_flag == 0) {
+            partJson.partOrdinal = this.value;
+        }
+        else if (this.name == 'partOrdinal' && init_flag != 0) {
+            partJson.Questions = questionsArray;
+            partForms.push(partJson);
+            partJson = {};
+            questionsArray = [];
+            partJson.partOrdinal = this.value;
+        }
+        //else if (this.name == 'PartName' && init_flag == 0) {
+        //    partJson.PartName = this.value;
+        //}
+        else if (this.name == 'PartName') {
+            partJson.PartName = this.value;
+        }
+        else if (this.name == 'questionOrdinal') {
+            Question = {};
+            Question.questionOrdinal = this.value;
+        }
+        else if (this.name == 'Question') {
+            Question.question = this.value;
+            if (choiceArray != []) {
+                Question.choices = choiceArray;
+            }
+            questionsArray.push(Question);
+        }
+        else if (this.name == 'choiceOrdinal') {
+            Choice = {};
+            Choice.choiceOrdinal = this.value;
+        }
+        else if (this.name == 'choice') {
+            Choice.choice = this.value;
+            choiceArray.push(Choice);
+        }
+        init_flag++;
+    });
+    partJson.Questions = questionsArray;
+    partForms.push(partJson);
+    console.log(partForms);
     $.ajax({
         url: 'http://localhost:57460/api/SubmitQuestions',
         type: 'POST',
         dataType: 'json',
-        data: { FormInputs: SerializedForm },
+        data: { partForms },
         success: function (data) {
             console.log(data);
         },

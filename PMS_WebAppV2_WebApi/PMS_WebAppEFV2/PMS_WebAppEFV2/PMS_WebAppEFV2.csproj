@@ -234,6 +234,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PMS_DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuestionPaperModel.cs" />
     <Compile Include="Models\QuestionType.cs">
       <DependentUpon>PMS_DBModel.tt</DependentUpon>
     </Compile>
