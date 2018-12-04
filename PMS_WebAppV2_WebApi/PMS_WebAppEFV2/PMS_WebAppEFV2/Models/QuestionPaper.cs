@@ -24,6 +24,7 @@ namespace PMS_WebAppEFV2.Models
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<System.Guid> UpdatedBy { get; set; }
         public bool Status { get; set; }
+        public string questionpaperdata { get; set; }
     
         public virtual Customer Customer { get; set; }
     }
