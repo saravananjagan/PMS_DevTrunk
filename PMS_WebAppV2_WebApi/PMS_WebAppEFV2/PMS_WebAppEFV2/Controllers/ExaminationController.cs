@@ -19,7 +19,7 @@ namespace PMS_WebAppEFV2.Controllers
             return View();
         }
         //GET: QuestionPaper
-        public ActionResult QuestionPaper()
+        public ActionResult QuestionPaper(string id)
         {
             return View();
         }

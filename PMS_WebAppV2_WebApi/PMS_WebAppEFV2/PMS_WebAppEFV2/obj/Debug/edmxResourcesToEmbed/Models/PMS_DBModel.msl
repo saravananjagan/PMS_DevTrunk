@@ -197,5 +197,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="QuestionPapers">
+      <EntityTypeMapping TypeName="saravananjagan_PMSModel.QuestionPaper">
+        <MappingFragment StoreEntitySet="QuestionPapers">
+          <ScalarProperty Name="ExaminationType" ColumnName="ExaminationType" />
+          <ScalarProperty Name="ExaminationTypeId" ColumnName="ExaminationTypeId" />
+          <ScalarProperty Name="questionpaperdata" ColumnName="questionpaperdata" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="totalmarks" ColumnName="totalmarks" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="QuestionPaperId" ColumnName="QuestionPaperId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

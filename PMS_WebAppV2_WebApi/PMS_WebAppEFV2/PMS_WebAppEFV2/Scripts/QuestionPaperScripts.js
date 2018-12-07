@@ -3,6 +3,9 @@ var _questionCounter = 0;
 $(document).ready(function () {
     GetExaminationTypes();
     GetQuestionTypes();
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    console.log(myParam);
 });
 //#region ExaminationTypes
 function GetExaminationTypes() {
@@ -34,8 +37,9 @@ function FillExaminationTypeDetails(ExaminationTypeData) {
     endLoader();
 }
 function SelectExaminationType(ExaminationTypeId, ExaminationType, ExaminationDuration, ExaminationTotalMarks) {
-    $(".ExaminationTypeSelectedText").html(ExaminationType);
-    $(".ExaminationTypeSelectedText").attr("id", "ExaminationType_" + ExaminationTypeId);
+    $("#ExaminationTypeSelectedText").html(ExaminationType);
+    $("#ExaminationTypeId").val(ExaminationTypeId);
+    
     $("#ExaminationDuration").val(ExaminationDuration);
     $("#ExaminationTotalMarks").val(ExaminationTotalMarks);
 }
@@ -88,6 +92,7 @@ function SelectQuestionType(QuestionTypeId, QuestionType, element) {
     var partContainerId = $(element).closest(".PartTemplate_Initial").attr("id");
     $(element).closest(".PartTemplate_Initial").find(".add-questions").attr("onclick", "AddQuestions('" + partContainerId + "','" + QuestionTypeId + "')");
     $(element).closest(".PartTemplate_Initial").find(".QuestionType").val(QuestionTypeId);
+    $(element).closest(".PartTemplate_Initial").find(".QuestionTypeText").val(QuestionType);
 }
 //#endregion
 
@@ -190,15 +195,23 @@ function RemovePartError(Selector, IsError) {
 
 //#region FormSubmit
 function FormSubmit(FormId) {
+    showLoader();
     var Formdetails = $("#" + FormId);
     var SerializedFormArray = Formdetails.serializeArray();
     var init_flag = 0;
+    var QuestionPaperModel = {};
     var partForms = [];
     var partJson = {};
     var questionsArray = [];
     var Question = {};
     var Choice = {};
     var choiceArray = [];
+    
+    QuestionPaperModel.SubjectName = $("#SubjectName").val();
+    QuestionPaperModel.ExaminationTypeId = $("#ExaminationTypeId").val();
+    QuestionPaperModel.ExaminationType = $("#ExaminationTypeSelectedText").html();
+    QuestionPaperModel.duration = $("#ExaminationDuration").val();
+    QuestionPaperModel.totalmarks = $("#ExaminationTotalMarks").val();
     $.each(SerializedFormArray, function () {
         if (this.name == 'partOrdinal' && init_flag == 0) {
             partJson.partOrdinal = this.value;
@@ -215,6 +228,9 @@ function FormSubmit(FormId) {
         }
         else if (this.name == 'QuestionTypeId') {
             partJson.QuestionTypeId = this.value;
+        }
+        else if (this.name == 'QuestionType') {
+            partJson.QuestionType = this.value;
         }
         else if (this.name == 'TotalMarks') {
             partJson.MarksPerPart= this.value;
@@ -246,18 +262,21 @@ function FormSubmit(FormId) {
         }
         init_flag++;
     });
+
     partJson.Questions = questionsArray;
     partForms.push(partJson);
+    QuestionPaperModel.partForms = partForms;
+    console.log(QuestionPaperModel);
     $.ajax({
         url: 'http://localhost:57460/api/SubmitQuestions',
         type: 'POST',
-        dataType: 'json',
-        data: { partForms },
+        data: { QuestionPaperModel },
         success: function (data) {
             console.log(data);
+            endLoader();
         },
         error: function (e) {
-            console.log(e);
+            endLoader();
         }
     });
 }

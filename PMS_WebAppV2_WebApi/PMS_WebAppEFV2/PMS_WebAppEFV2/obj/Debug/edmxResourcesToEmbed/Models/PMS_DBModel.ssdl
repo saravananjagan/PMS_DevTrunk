@@ -137,6 +137,24 @@
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
     <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="QuestionPapers">
+    <Key>
+      <PropertyRef Name="QuestionPaperId" />
+    </Key>
+    <Property Name="QuestionPaperId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExaminationTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExaminationType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SubjectName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="duration" Type="time" Precision="7" Nullable="false" />
+    <Property Name="totalmarks" Type="int" Nullable="false" />
+    <Property Name="questionpaperdata" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="uniqueidentifier" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="QuestionType">
     <Key>
       <PropertyRef Name="QuestionTypeId" />
@@ -364,6 +382,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__QuestionP__Custo__7A672E12">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="QuestionPapers" Type="Self.QuestionPapers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="QuestionPapers">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__QuestionT__Custo__6477ECF3">
     <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="*" />
@@ -434,6 +464,7 @@
     <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="ModuleDetails" EntityType="Self.ModuleDetails" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="ModuleMapping" EntityType="Self.ModuleMapping" Schema="Pms" store:Type="Tables" />
+    <EntitySet Name="QuestionPapers" EntityType="Self.QuestionPapers" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="Pms" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="Pms" store:Type="Tables" />
@@ -496,6 +527,10 @@
     <AssociationSet Name="FK__ModuleMap__Modul__34C8D9D1" Association="Self.FK__ModuleMap__Modul__34C8D9D1">
       <End Role="ModuleDetails" EntitySet="ModuleDetails" />
       <End Role="ModuleMapping" EntitySet="ModuleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QuestionP__Custo__7A672E12" Association="Self.FK__QuestionP__Custo__7A672E12">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="QuestionPapers" EntitySet="QuestionPapers" />
     </AssociationSet>
     <AssociationSet Name="FK__QuestionT__Custo__6477ECF3" Association="Self.FK__QuestionT__Custo__6477ECF3">
       <End Role="Customer" EntitySet="Customer" />

@@ -8,6 +8,8 @@ namespace PMS_WebAppEFV2.Models
     public class QuestionPaperModel
     {
         public string SubjectName { get; set; }
+        public string ExaminationTypeId { get; set; }
+        public string ExaminationType { get; set; }
         public TimeSpan duration { get; set; }
         public int totalmarks { get; set; }
         public PartForm[] partForms { get; set; }
@@ -16,6 +18,7 @@ namespace PMS_WebAppEFV2.Models
     {
         public string partOrdinal { get; set; }
         public string QuestionTypeId { get; set; }
+        public string QuestionType { get; set; }
         public string MarksPerPart { get; set; }
         public string MarksPerQuestion { get; set; }
         public string NumberOfQuestions { get; set; }

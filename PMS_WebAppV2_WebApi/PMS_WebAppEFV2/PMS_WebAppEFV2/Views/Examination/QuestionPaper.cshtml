@@ -1,28 +1,32 @@
-﻿<div class="container-fluid">
-    <div class="dropdown">
-        <h4>
-            Examination Type : <button type="button" type="button" class="btn btn-outline-primary dropdown-toggle ExaminationTypeSelectedText" data-toggle="dropdown">
-                --Please Select--
-            </button>
-            <div class="dropdown-menu" id="ExaminationTypeDropDown">
+﻿
+<form id="QuestionPaperDetailsForm">
+    <div class="container-fluid">
+        <div class="dropdown">
+            <h4>
+                Examination Type : <button type="button" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" id="ExaminationTypeSelectedText">
+                    --Please Select--
+                </button>
+                <input type="hidden" id="ExaminationTypeId" />
+                <div class="dropdown-menu" id="ExaminationTypeDropDown">
+                </div>
+                <button type="button" type="button" class="btn btn-success" style="float:right" onclick="AddPart()">
+                    Add part
+                </button>
+            </h4>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <input type="text" class="form-control form-control-lg text-center" placeholder="Subject Title" id="SubjectName" name="SubjectName"><br>
+        <div class="row">
+            <div class="col-6">
+                <input class="form-control left-aligned-small-input text-center" id="ExaminationDuration" type="text" placeholder="HH:MM" name="Time" disabled>
             </div>
-            <button type="button" type="button" class="btn btn-success" style="float:right" onclick="AddPart()">
-                Add part
-            </button>
-        </h4>
-    </div>
-</div>
-<div class="container-fluid">
-    <input type="text" class="form-control form-control-lg text-center" placeholder="Subject Title" name="SubjectName"><br>
-    <div class="row">
-        <div class="col-6">
-            <input class="form-control left-aligned-small-input text-center" id="ExaminationDuration" type="text" placeholder="HH:MM" name ="Time"disabled>
+            <div class="col-6">
+                <input class="form-control right-aligned-small-input text-center" id="ExaminationTotalMarks" type="text" placeholder="Marks" name="Marks" disabled>
+            </div>
         </div>
-        <div class="col-6">
-            <input class="form-control right-aligned-small-input text-center" id="ExaminationTotalMarks" type="text" placeholder="Marks" name="Marks" disabled>
-        </div>
-    </div>
-</div><br />
+    </div><br />
+</form>
 <form id="QuestionPaperForm">
     <div class="container-fluid" id="PartsContainer">
 
@@ -55,8 +59,9 @@
                         Part Name:
                         <input type="text" class="form-control" style="width:50%;display:inline-block;" placeholder="PartName" name="PartName">
                         <input type="hidden" class="QuestionType" name="QuestionTypeId" />
+                        <input type="hidden" class="QuestionTypeText" name="QuestionType" />
                         <button type="button" class="btn btn-primary add-questions" style="display:inline-block;float:right;" onclick="AddQuestions()">Add Questions</button><p class="text-center" style="display:inline-block;float:right;">&nbsp;</p>
-                        <input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q" disabled><p class="text-center" name="TotalMarks" style="width:3%;display:inline-block;float:right;">=</p>
+                        <input type="text" class="form-control TotalMarks" style="width:4%;display:inline-block;float:right;" placeholder="Q" name="TotalMarks" disabled><p class="text-center" style="width:3%;display:inline-block;float:right;">=</p>
                         <input type="text" class="form-control MarksPerQuestion" onkeyup="TotalMarksCalculation(this,'MarksPerQuestion')" style="width:4%;display:inline-block;float:right;" name="MarksPerQuestion" placeholder="m"><p class="text-center" style="width:3%;display:inline-block;float:right;">x</p>
                         <input type="text" class="form-control NumberOfQuestions" onkeyup="TotalMarksCalculation(this,'NumberOfQuestions')" style="width:4%;display:inline-block;float:right;" name="NumberOfQuestions" placeholder="N">
                     </h3>

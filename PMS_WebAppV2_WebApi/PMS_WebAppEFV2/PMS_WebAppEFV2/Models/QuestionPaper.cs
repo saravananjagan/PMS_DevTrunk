@@ -25,6 +25,8 @@ namespace PMS_WebAppEFV2.Models
         public Nullable<System.Guid> UpdatedBy { get; set; }
         public bool Status { get; set; }
         public string questionpaperdata { get; set; }
+        public System.Guid ExaminationTypeId { get; set; }
+        public string ExaminationType { get; set; }
     
         public virtual Customer Customer { get; set; }
     }
