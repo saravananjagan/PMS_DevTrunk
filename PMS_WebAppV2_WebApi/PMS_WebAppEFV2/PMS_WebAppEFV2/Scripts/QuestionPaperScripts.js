@@ -4,8 +4,10 @@ $(document).ready(function () {
     GetExaminationTypes();
     GetQuestionTypes();
     const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('id');
-    console.log(myParam);
+    const id = urlParams.get('id');
+    if (id != null && id != '' && id != undefined) {
+        GetQuestionPaperDetailsById(id);
+    }
 });
 //#region ExaminationTypes
 function GetExaminationTypes() {
@@ -266,18 +268,41 @@ function FormSubmit(FormId) {
     partJson.Questions = questionsArray;
     partForms.push(partJson);
     QuestionPaperModel.partForms = partForms;
-    console.log(QuestionPaperModel);
     $.ajax({
         url: 'http://localhost:57460/api/SubmitQuestions',
         type: 'POST',
         data: { QuestionPaperModel },
         success: function (data) {
-            console.log(data);
+            window.location.href = "http://localhost:57460/Examination/QuestionPaper?id=" + data.QuestionPaperId;
             endLoader();
         },
         error: function (e) {
             endLoader();
         }
     });
+}
+//#endregion
+
+//#region Get Question Paper Details
+function GetQuestionPaperDetailsById(Id) {
+    showLoader();
+    $.ajax({
+        url: 'http://localhost:57460/api/GetQuestionPaperById',
+        type: 'GET',
+        data: {Id},
+        success: function (data) {
+            FillQuestionPaper(data);
+            endLoader();
+        },
+        error: function () {
+            console.log("Error Please Try Again After Sometime, Propably Connection/Network Issue. \n For Immediate assistance Contact Support.");
+        }
+    });
+}
+//#endregion
+
+//#region Question Paper Fill
+function FillQuestionPaper(questionPaperModelData) {
+    console.log(questionPaperModelData);
 }
 //#endregion
